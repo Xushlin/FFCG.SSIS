@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFCG.SSIS", "FFCG.SSIS\FFCG.SSIS.csproj", "{8526839E-E34B-4C52-95F9-E28EF0FED1A4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PackageRunner", "PackageRunner", "{2EAC1AD8-CD03-4BA2-B473-D5AF8C8EAABA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{C53F5493-EDA1-4F6A-A9D6-345FCDC1CF03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFCG.SSIS.PackageRunner.Contract", "FFCG.SSIS.PackageRunner.Contract\FFCG.SSIS.PackageRunner.Contract.csproj", "{6F2ABC63-FDAE-4848-9BDE-15B25264D1ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +15,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8526839E-E34B-4C52-95F9-E28EF0FED1A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8526839E-E34B-4C52-95F9-E28EF0FED1A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8526839E-E34B-4C52-95F9-E28EF0FED1A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8526839E-E34B-4C52-95F9-E28EF0FED1A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F2ABC63-FDAE-4848-9BDE-15B25264D1ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F2ABC63-FDAE-4848-9BDE-15B25264D1ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F2ABC63-FDAE-4848-9BDE-15B25264D1ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F2ABC63-FDAE-4848-9BDE-15B25264D1ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C53F5493-EDA1-4F6A-A9D6-345FCDC1CF03} = {2EAC1AD8-CD03-4BA2-B473-D5AF8C8EAABA}
+		{6F2ABC63-FDAE-4848-9BDE-15B25264D1ED} = {C53F5493-EDA1-4F6A-A9D6-345FCDC1CF03}
 	EndGlobalSection
 EndGlobal
