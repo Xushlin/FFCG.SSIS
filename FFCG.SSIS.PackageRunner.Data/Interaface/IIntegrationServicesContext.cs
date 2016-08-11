@@ -35,11 +35,31 @@ namespace FFCG.SSIS.PackageRunner.Data.Interaface
         /// <returns>
         /// The <see cref="int"/>.
         /// </returns>
-        int CreateExecution(
-            string packageName,
-            string folderName,
-            string projectName,
-            int? referenceId = null,
-            bool use32BitRuntime = false);
+        int CreateExecution(string packageName, string folderName, string projectName, int? referenceId = null, bool use32BitRuntime = false);
+
+        /// <summary>
+        /// The set execution parameter.
+        /// </summary>
+        /// <param name="executionId">
+        /// The execution id.
+        /// </param>
+        /// <param name="objectType">
+        /// The object type.
+        /// </param>
+        /// <param name="parameterName">
+        /// The parameter name.
+        /// </param>
+        /// <param name="parameterValue">
+        /// The parameter value.
+        /// </param>
+        void SetExecutionParameter(int executionId, short objectType, string parameterName, string parameterValue);
+
+        /// <summary>
+        /// The start execution.
+        /// </summary>
+        /// <param name="executionId">
+        /// The execution id.
+        /// </param>
+        void StartExecution(int executionId);
     }
 }
