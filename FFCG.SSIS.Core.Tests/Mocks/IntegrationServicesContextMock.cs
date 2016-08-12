@@ -9,6 +9,8 @@
 
 namespace FFCG.SSIS.Core.Tests.Mocks
 {
+    using System.Linq;
+
     using FakeDbSet;
 
     using FFCG.SSIS.Core.Data.Interface;
@@ -68,6 +70,15 @@ namespace FFCG.SSIS.Core.Tests.Mocks
             IntegrationServicesContextData.DefaultSeed(this.Object);
 
             // FETCH //////////////////////////////////////////////////////////
+            this.Package1 = this.PackageSet.First(p => p.PackageId == IntegrationServicesContextData.PackageId1);
+            this.Package2 = this.PackageSet.First(p => p.PackageId == IntegrationServicesContextData.PackageId2);
         }
+
+        public Package Package2 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the package 1.
+        /// </summary>
+        public Package Package1 { get; set; }
     }
 }

@@ -52,6 +52,12 @@
     <Compile Include="Interface\Project\IProjectRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FFCG.SSIS.Core.Data\FFCG.SSIS.Core.Data.csproj">
+      <Project>{468A76DE-86F1-46F2-9CC4-0F5B70AF338D}</Project>
+      <Name>FFCG.SSIS.Core.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
