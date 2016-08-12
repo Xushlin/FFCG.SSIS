@@ -34,6 +34,11 @@ namespace FFCG.SSIS.Core.Data.Interface
         IDbSet<Project> Projects { get; }
 
         /// <summary>
+        /// Gets the packages.
+        /// </summary>
+        IDbSet<Package> Packages { get; }
+
+        /// <summary>
         /// The create execution.
         /// </summary>
         /// <param name="packageName">

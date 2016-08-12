@@ -10,6 +10,7 @@
 namespace FFCG.SSIS.Core.Data.Model
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,6 +20,11 @@ namespace FFCG.SSIS.Core.Data.Model
     [Table("projects", Schema = "catalog")]
     public class Project
     {
+        public Project()
+        {
+            this.Packages = new HashSet<Package>();
+        }
+
         /// <summary>
         /// Gets or sets the project id.
         /// </summary>
@@ -101,5 +107,10 @@ namespace FFCG.SSIS.Core.Data.Model
         /// Gets or sets the folder.
         /// </summary>
         public virtual Folder Folder { get; set; }
+
+        /// <summary>
+        /// Gets or sets the packages.
+        /// </summary>
+        public virtual ICollection<Package> Packages { get; set; }
     }
 }

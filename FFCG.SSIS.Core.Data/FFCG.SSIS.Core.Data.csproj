@@ -53,6 +53,7 @@
     <Compile Include="Interface\IIntegrationServicesContext.cs" />
     <Compile Include="Model\Folder.cs" />
     <Compile Include="Model\Operation.cs" />
+    <Compile Include="Model\Package.cs" />
     <Compile Include="Model\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

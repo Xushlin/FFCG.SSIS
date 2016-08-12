@@ -37,6 +37,8 @@ namespace FFCG.SSIS.Core.Data.Implementation
 
         public IDbSet<Project> Projects => this.Set<Project>();
 
+        public IDbSet<Package> Packages => this.Set<Package>();
+
         /// <summary>
         /// The create execution.
         /// </summary>
@@ -115,6 +117,10 @@ namespace FFCG.SSIS.Core.Data.Implementation
                 .HasRequired(p => p.Folder)
                 .WithMany(f => f.Projects)
                 .HasForeignKey(p => p.FolderId);
+            modelBuilder.Entity<Package>().HasKey(pkg => pkg.PackageId)
+                .HasRequired(pkg => pkg.Project)
+                .WithMany(p => p.Packages)
+                .HasForeignKey(pkg => pkg.ProjectId);
         }
     }
 }

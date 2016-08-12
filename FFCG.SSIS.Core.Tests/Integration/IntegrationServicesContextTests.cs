@@ -92,5 +92,40 @@ namespace FFCG.SSIS.Core.Tests.Integration
 
             Assert.IsTrue(projects.Any(), "projects.Any()");
         }
+
+        /// <summary>
+        /// The should be able to fetch a package.
+        /// </summary>
+        [Test]
+        public void ShouldBeAbleToFetchAPackage()
+        {
+            var package = this.context.Packages.FirstOrDefault();
+
+            Assert.IsNotNull(package, "package != null");
+        }
+
+        /// <summary>
+        /// The should be able to access project from package.
+        /// </summary>
+        [Test]
+        public void ShouldBeAbleToAccessProjectFromPackage()
+        {
+            var package = this.context.Packages.First();
+            var project = package.Project;
+
+            Assert.IsNotNull(project, "project != null");
+        }
+
+        /// <summary>
+        /// The should be able to list packages from project.
+        /// </summary>
+        [Test]
+        public void ShouldBeAbleToListPackagesFromProject()
+        {
+            var project = this.context.Projects.First();
+            var packages = project.Packages;
+
+            Assert.IsTrue(packages.Any(), "packages.Any()");
+        }
     }
 }
