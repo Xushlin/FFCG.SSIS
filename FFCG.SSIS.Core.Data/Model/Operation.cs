@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace FFCG.SSIS.PackageRunner.Data.Model
+namespace FFCG.SSIS.Core.Data.Model
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -36,7 +36,7 @@ namespace FFCG.SSIS.PackageRunner.Data.Model
         /// Gets or sets the created time.
         /// </summary>
         [Column("created_time")]
-        public DateTime? CreatedTime { get; set; }
+        public DateTimeOffset? CreatedTime { get; set; }
 
         /// <summary>
         /// Gets or sets the object type.
@@ -67,13 +67,13 @@ namespace FFCG.SSIS.PackageRunner.Data.Model
         /// Gets or sets the start time.
         /// </summary>
         [Column("start_time")]
-        public DateTime? StartTime { get; set; }
+        public DateTimeOffset? StartTime { get; set; }
 
         /// <summary>
         /// Gets or sets the end time.
         /// </summary>
         [Column("end_time")]
-        public DateTime? EndTime { get; set; }
+        public DateTimeOffset? EndTime { get; set; }
 
         /// <summary>
         /// Gets or sets the caller sid.
@@ -99,7 +99,7 @@ namespace FFCG.SSIS.PackageRunner.Data.Model
         /// <summary>
         /// Gets or sets the stopped by sid.
         /// </summary>
-        [Column("stoppped_by_sid")]
+        [Column("stopped_by_sid")]
         [MaxLength(85)]
         public byte[] StoppedBySid { get; set; }
 

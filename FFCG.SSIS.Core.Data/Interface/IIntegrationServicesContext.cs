@@ -7,13 +7,22 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace FFCG.SSIS.PackageRunner.Data.Interaface
+namespace FFCG.SSIS.Core.Data.Interface
 {
+    using System.Data.Entity;
+
+    using FFCG.SSIS.Core.Data.Model;
+
     /// <summary>
     /// The IntegrationServicesContext interface.
     /// </summary>
     public interface IIntegrationServicesContext
     {
+        /// <summary>
+        /// Gets the operations.
+        /// </summary>
+        IDbSet<Operation> Operations { get; }
+
         /// <summary>
         /// The create execution.
         /// </summary>
