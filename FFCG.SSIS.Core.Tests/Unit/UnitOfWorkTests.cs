@@ -97,7 +97,7 @@ namespace FFCG.SSIS.Core.Tests.Unit
         }
 
         /// <summary>
-        /// The should be able to get propjects repository.
+        /// The should be able to get projects repository.
         /// </summary>
         [Test]
         public void ShouldBeAbleToGetProjectsRepository()
