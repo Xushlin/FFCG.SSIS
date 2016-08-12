@@ -9,6 +9,7 @@
 
 namespace FFCG.SSIS.Core.Tests.Integration
 {
+    using System;
     using System.Linq;
 
     using FFCG.SSIS.Core.Data.Implementation;
@@ -34,6 +35,15 @@ namespace FFCG.SSIS.Core.Tests.Integration
         public void SetUp()
         {
             this.context = new IntegrationServicesContext();
+        }
+
+        /// <summary>
+        /// The tear down.
+        /// </summary>
+        [TearDown]
+        public void TearDown()
+        {
+            this.context.Dispose();
         }
 
         /// <summary>
@@ -126,6 +136,79 @@ namespace FFCG.SSIS.Core.Tests.Integration
             var packages = project.Packages;
 
             Assert.IsTrue(packages.Any(), "packages.Any()");
+        }
+
+        /// <summary>
+        /// The should be able to create an execution.
+        /// </summary>
+        [Test]
+        public void ShouldBeAbleToStartAndFinishAnExecution()
+        {
+            var executionid = this.context.CreateExecution(Data.PackageName, Data.FolderName, Data.ProjectName);
+
+            Assert.IsTrue(executionid > 0, "executionid > 0");
+
+            this.context.SetExecutionParameterValue(executionid, Data.ObjectType, Data.ParameterName, Data.ParameterValue);
+            this.context.StartExecution(executionid);
+
+            // created(1), running(2), canceled(3), failed(4), pending(5), ended unexpectedly (6), succeeded(7), stopping(8), and completed(9).
+            int status;
+            do
+            {
+                this.context.Dispose();
+                this.context = new IntegrationServicesContext();
+
+                var operation = this.context.Operations.First(o => o.OperationId == executionid);
+                status = operation.Status;
+
+                Console.WriteLine($"Status: {status}");
+
+                System.Threading.Thread.Sleep(100);
+            }
+            while (Data.OperationRunningStatuses.Contains(status));
+        }
+
+        /// <summary>
+        /// The data.
+        /// </summary>
+        private static class Data
+        {
+            /// <summary>
+            /// The package name.
+            /// </summary>
+            public const string PackageName = "Lesson 6.dtsx";
+
+            /// <summary>
+            /// The folder name.
+            /// </summary>
+            public const string FolderName = "SSIS Tutorial";
+
+            /// <summary>
+            /// The project name.
+            /// </summary>
+            public const string ProjectName = "SSIS Tutorial Deployment";
+
+            /// <summary>
+            /// The object type.
+            /// </summary>
+            public const short ObjectType = 30;
+
+            /// <summary>
+            /// The parameter name.
+            /// </summary>
+            public const string ParameterName = "VarFolderName";
+
+            /// <summary>
+            /// The parameter value.
+            /// </summary>
+            public const string ParameterValue = @"C:\temp\SSIS Tutorial Sample Data\Currencies";
+
+            /// <summary>
+            /// The operation stopped statuses.
+            /// </summary>
+            public static readonly int[] OperationStoppedStatuses = { 3, 4, 6, 7, 8 };
+
+            public static readonly int[] OperationRunningStatuses = { 1, 2, 5 };
         }
     }
 }
