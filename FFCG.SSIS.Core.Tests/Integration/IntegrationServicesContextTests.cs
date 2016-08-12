@@ -21,6 +21,7 @@ namespace FFCG.SSIS.Core.Tests.Integration
     /// The integration services context tests.
     /// </summary>
     [TestFixture]
+    [Ignore("Integration tests, requires connection to working SSIS environment and database.")]
     public class IntegrationServicesContextTests
     {
         /// <summary>
