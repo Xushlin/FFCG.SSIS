@@ -49,8 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementation\Folder\FolderBusinessObject.cs" />
     <Compile Include="Implementation\Folder\FolderRepository.cs" />
     <Compile Include="Implementation\ObjectProvider.cs" />
+    <Compile Include="Implementation\Operation\OperationBusinessObject.cs" />
     <Compile Include="Implementation\Operation\OperationRepository.cs" />
     <Compile Include="Implementation\Package\PackageBusinessObject.cs" />
     <Compile Include="Implementation\Package\PackageRepository.cs" />

@@ -50,15 +50,60 @@ namespace FFCG.SSIS.Core.Tests.Mocks
         public InMemoryDbSet<Package> PackageSet { get; set; }
 
         /// <summary>
+        /// Gets or sets the folder 2.
+        /// </summary>
+        public Folder Folder2 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the folder 1.
+        /// </summary>
+        public Folder Folder1 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the project 2.
+        /// </summary>
+        public Project Project2 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the project 1.
+        /// </summary>
+        public Project Project1 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the package 2.
+        /// </summary>
+        public Package Package2 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the package 1.
+        /// </summary>
+        public Package Package1 { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the operation 3.
+        /// </summary>
+        public Operation Operation3 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the operation 2.
+        /// </summary>
+        public Operation Operation2 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the operation 1.
+        /// </summary>
+        public Operation Operation1 { get; set; }
+
+        /// <summary>
         /// The initialize.
         /// </summary>
         private void Initialize()
         {
             // SETS ///////////////////////////////////////////////////////////
-            this.OperationSet = new InMemoryDbSet<Operation>();
-            this.PackageSet = new InMemoryDbSet<Package>();
-            this.FolderSet = new InMemoryDbSet<Folder>();
-            this.ProjectSet = new InMemoryDbSet<Project>();
+            this.OperationSet = new InMemoryDbSet<Operation>(true);
+            this.PackageSet = new InMemoryDbSet<Package>(true);
+            this.FolderSet = new InMemoryDbSet<Folder>(true);
+            this.ProjectSet = new InMemoryDbSet<Project>(true);
 
             // SETUP //////////////////////////////////////////////////////////
             this.SetupGet(ctx => ctx.Operations).Returns(this.OperationSet);
@@ -72,13 +117,13 @@ namespace FFCG.SSIS.Core.Tests.Mocks
             // FETCH //////////////////////////////////////////////////////////
             this.Package1 = this.PackageSet.First(p => p.PackageId == IntegrationServicesContextData.PackageId1);
             this.Package2 = this.PackageSet.First(p => p.PackageId == IntegrationServicesContextData.PackageId2);
+            this.Project1 = this.ProjectSet.First(p => p.ProjectId == IntegrationServicesContextData.ProjectId1);
+            this.Project2 = this.ProjectSet.First(p => p.ProjectId == IntegrationServicesContextData.ProjectId2);
+            this.Folder1 = this.FolderSet.First(p => p.FolderId == IntegrationServicesContextData.FolderId1);
+            this.Folder2 = this.FolderSet.First(p => p.FolderId == IntegrationServicesContextData.FolderId2);
+            this.Operation1 = this.OperationSet.First(o => o.OperationId == IntegrationServicesContextData.OperationId1);
+            this.Operation2 = this.OperationSet.First(o => o.OperationId == IntegrationServicesContextData.OperationId2);
+            this.Operation3 = this.OperationSet.First(o => o.OperationId == IntegrationServicesContextData.OperationId3);
         }
-
-        public Package Package2 { get; set; }
-
-        /// <summary>
-        /// Gets or sets the package 1.
-        /// </summary>
-        public Package Package1 { get; set; }
     }
 }

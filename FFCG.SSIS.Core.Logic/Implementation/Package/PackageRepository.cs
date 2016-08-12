@@ -38,7 +38,9 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Package
         /// </returns>
         public IEnumerable<IPackageBusinessObject> List()
         {
-            return this.unitOfWork.Context.Packages.Select(pkg => new PackageBusinessObject(pkg, this.unitOfWork));
+            return this.unitOfWork.Context.Packages
+                .AsEnumerable()
+                .Select(pkg => new PackageBusinessObject(pkg, this.unitOfWork));
         }
 
         /// <summary>
@@ -52,7 +54,10 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Package
         /// </returns>
         public IEnumerable<IPackageBusinessObject> List(long projectId)
         {
-            throw new System.NotImplementedException();
+            return this.unitOfWork.Context.Packages
+                .Where(pkg => pkg.ProjectId == projectId)
+                .AsEnumerable()
+                .Select(pkg => new PackageBusinessObject(pkg, this.unitOfWork));
         }
 
         /// <summary>
@@ -66,7 +71,9 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Package
         /// </returns>
         public IPackageBusinessObject Get(long packageId)
         {
-            throw new System.NotImplementedException();
+            var package = this.unitOfWork.Context.Packages.First(pkg => pkg.PackageId == packageId);
+
+            return new PackageBusinessObject(package, this.unitOfWork);
         }
     }
 }
