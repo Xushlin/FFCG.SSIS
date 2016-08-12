@@ -86,5 +86,13 @@ namespace FFCG.SSIS.Core.Data.Interface
         /// The execution id.
         /// </param>
         void StartExecution(long executionId);
+
+        /// <summary>
+        /// The save changes.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
+        int SaveChanges();
     }
 }

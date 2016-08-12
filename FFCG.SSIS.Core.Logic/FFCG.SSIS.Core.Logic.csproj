@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3C13383C-24C5-450A-BDFE-DD06B96D52A9}</ProjectGuid>
+    <ProjectGuid>{4F0E45BD-B2DC-4D7B-9388-FDEA7FB349EC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FFCG.SSIS.Core.Contract</RootNamespace>
-    <AssemblyName>FFCG.SSIS.Core.Contract</AssemblyName>
+    <RootNamespace>FFCG.SSIS.Core.Logic</RootNamespace>
+    <AssemblyName>FFCG.SSIS.Core.Logic</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,18 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\Folder\IFolderBusinessObject.cs" />
-    <Compile Include="Interface\Folder\IFolderRepository.cs" />
-    <Compile Include="Interface\IObjectProvider.cs" />
-    <Compile Include="Interface\Operation\IOperationBusinessObject.cs" />
-    <Compile Include="Interface\Operation\IOperationRepository.cs" />
-    <Compile Include="Interface\IUnitOfWork.cs" />
-    <Compile Include="Interface\Package\IPackageBusinessObject.cs" />
-    <Compile Include="Interface\Package\IPackageRepository.cs" />
-    <Compile Include="Interface\Project\IProjectBusinessObject.cs" />
-    <Compile Include="Interface\Project\IProjectRepository.cs" />
+    <Compile Include="Implementation\Folder\FolderRepository.cs" />
+    <Compile Include="Implementation\ObjectProvider.cs" />
+    <Compile Include="Implementation\Operation\OperationRepository.cs" />
+    <Compile Include="Implementation\Package\PackageRepository.cs" />
+    <Compile Include="Implementation\Project\ProjectRepository.cs" />
+    <Compile Include="Implementation\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FFCG.SSIS.Core.Contract\FFCG.SSIS.Core.Contract.csproj">
+      <Project>{3c13383c-24c5-450a-bdfe-dd06b96d52a9}</Project>
+      <Name>FFCG.SSIS.Core.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FFCG.SSIS.Core.Data\FFCG.SSIS.Core.Data.csproj">
+      <Project>{468a76de-86f1-46f2-9cc4-0f5b70af338d}</Project>
+      <Name>FFCG.SSIS.Core.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
