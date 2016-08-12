@@ -46,5 +46,27 @@ namespace FFCG.SSIS.Core.Tests.Integration
 
             Assert.IsNotNull(operation, "operation != null");
         }
+
+        /// <summary>
+        /// The should be able to find a folder.
+        /// </summary>
+        [Test]
+        public void ShouldBeAbleToFindAFolder()
+        {
+            var folder = this.context.Folders.FirstOrDefault();
+
+            Assert.IsNotNull(folder, "folder != null");
+        }
+
+        /// <summary>
+        /// The should be able to find a project.
+        /// </summary>
+        [Test]
+        public void ShouldBeAbleToFindAProject()
+        {
+            var project = this.context.Projects.FirstOrDefault();
+
+            Assert.IsNotNull(project, "project != null");
+        }
     }
 }

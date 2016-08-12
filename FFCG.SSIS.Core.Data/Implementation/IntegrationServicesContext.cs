@@ -33,6 +33,10 @@ namespace FFCG.SSIS.Core.Data.Implementation
 
         public IDbSet<Operation> Operations => this.Set<Operation>();
 
+        public IDbSet<Folder> Folders => this.Set<Folder>();
+
+        public IDbSet<Project> Projects => this.Set<Project>();
+
         /// <summary>
         /// The create execution.
         /// </summary>
@@ -106,6 +110,7 @@ namespace FFCG.SSIS.Core.Data.Implementation
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Operation>().HasKey(e => e.OperationId);
+            modelBuilder.Entity<Folder>().HasKey(f => f.FolderId);
         }
     }
 }

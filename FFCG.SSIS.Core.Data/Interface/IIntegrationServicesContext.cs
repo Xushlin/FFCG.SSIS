@@ -24,6 +24,16 @@ namespace FFCG.SSIS.Core.Data.Interface
         IDbSet<Operation> Operations { get; }
 
         /// <summary>
+        /// Gets the folders.
+        /// </summary>
+        IDbSet<Folder> Folders { get; }
+
+        /// <summary>
+        /// Gets the projects.
+        /// </summary>
+        IDbSet<Project> Projects { get; }
+
+        /// <summary>
         /// The create execution.
         /// </summary>
         /// <param name="packageName">
