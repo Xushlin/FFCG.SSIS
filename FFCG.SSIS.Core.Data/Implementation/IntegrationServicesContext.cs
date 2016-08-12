@@ -111,6 +111,10 @@ namespace FFCG.SSIS.Core.Data.Implementation
 
             modelBuilder.Entity<Operation>().HasKey(e => e.OperationId);
             modelBuilder.Entity<Folder>().HasKey(f => f.FolderId);
+            modelBuilder.Entity<Project>().HasKey(p => p.ProjectId)
+                .HasRequired(p => p.Folder)
+                .WithMany(f => f.Projects)
+                .HasForeignKey(p => p.FolderId);
         }
     }
 }

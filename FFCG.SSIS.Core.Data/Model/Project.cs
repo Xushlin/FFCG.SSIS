@@ -96,5 +96,10 @@ namespace FFCG.SSIS.Core.Data.Model
         /// </summary>
         [Column("last_validation_time")]
         public DateTimeOffset? LastValidationTime { get; set; }
+
+        /// <summary>
+        /// Gets or sets the folder.
+        /// </summary>
+        public virtual Folder Folder { get; set; }
     }
 }

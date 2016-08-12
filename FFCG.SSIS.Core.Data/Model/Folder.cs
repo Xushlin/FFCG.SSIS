@@ -10,6 +10,7 @@
 namespace FFCG.SSIS.Core.Data.Model
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,6 +20,11 @@ namespace FFCG.SSIS.Core.Data.Model
     [Table("folders", Schema = "catalog")]
     public class Folder
     {
+        public Folder()
+        {
+            this.Projects = new HashSet<Project>();
+        }
+
         /// <summary>
         /// Gets or sets the folder id.
         /// </summary>
@@ -60,5 +66,10 @@ namespace FFCG.SSIS.Core.Data.Model
         /// </summary>
         [Column("created_time")]
         public DateTimeOffset CreatedTime { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the projects.
+        /// </summary>
+        public virtual ICollection<Project> Projects { get; set; }
     }
 }

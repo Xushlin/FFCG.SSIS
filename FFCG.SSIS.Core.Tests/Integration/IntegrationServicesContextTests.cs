@@ -68,5 +68,29 @@ namespace FFCG.SSIS.Core.Tests.Integration
 
             Assert.IsNotNull(project, "project != null");
         }
+
+        /// <summary>
+        /// The should be able to get folder.
+        /// </summary>
+        [Test]
+        public void ShouldBeAbleToGetFolderFromProject()
+        {
+            var project = this.context.Projects.First();
+            var folder = project.Folder;
+
+            Assert.IsNotNull(folder, "folder != null");
+        }
+
+        /// <summary>
+        /// The should be able to access projects from a folder.
+        /// </summary>
+        [Test]
+        public void ShouldBeAbleToAccessProjectsFromAFolder()
+        {
+            var folder = this.context.Folders.First();
+            var projects = folder.Projects;
+
+            Assert.IsTrue(projects.Any(), "projects.Any()");
+        }
     }
 }
