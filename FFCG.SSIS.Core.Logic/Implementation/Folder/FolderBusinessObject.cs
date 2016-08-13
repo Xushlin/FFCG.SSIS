@@ -9,8 +9,14 @@
 
 namespace FFCG.SSIS.Core.Logic.Implementation.Folder
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     using FFCG.SSIS.Core.Contract.Interface.Folder;
+    using FFCG.SSIS.Core.Contract.Interface.Project;
     using FFCG.SSIS.Core.Data.Model;
+    using FFCG.SSIS.Core.Logic.Implementation.Project;
 
     /// <summary>
     /// The folder business object.
@@ -32,5 +38,19 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Folder
             this.model = model;
             this.unitOfWork = unitOfWork;
         }
+
+        public long FolderId => this.model.FolderId;
+
+        public string Name => this.model.Name;
+
+        public string Description => this.model.Description;
+
+        public byte[] CreatedBySid => this.model.CreatedBySid;
+
+        public string CreatedByName => this.model.CreatedByName;
+
+        public DateTimeOffset CreatedTime => this.model.CreatedTime;
+
+        public IEnumerable<IProjectBusinessObject> Projects => this.model.Projects.AsEnumerable().Select(proj => new ProjectBusinessObject(proj, this.unitOfWork));
     }
 }

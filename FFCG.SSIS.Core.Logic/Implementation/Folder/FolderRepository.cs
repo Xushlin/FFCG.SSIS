@@ -9,6 +9,9 @@
 
 namespace FFCG.SSIS.Core.Logic.Implementation.Folder
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     using FFCG.SSIS.Core.Contract.Interface;
     using FFCG.SSIS.Core.Contract.Interface.Folder;
 
@@ -20,11 +23,38 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Folder
         /// <summary>
         /// The unit of work.
         /// </summary>
-        private readonly IUnitOfWork unitOfWork;
+        private readonly UnitOfWork unitOfWork;
 
-        public FolderRepository(IUnitOfWork unitOfWork)
+        public FolderRepository(UnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
+        }
+
+        /// <summary>
+        /// The list.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="IEnumerable"/>.
+        /// </returns>
+        public IEnumerable<IFolderBusinessObject> List()
+        {
+            return this.unitOfWork.Context.Folders.AsEnumerable().Select(folder => new FolderBusinessObject(folder, this.unitOfWork));
+        }
+
+        /// <summary>
+        /// The get.
+        /// </summary>
+        /// <param name="folderId">
+        /// The folder id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IFolderBusinessObject"/>.
+        /// </returns>
+        public IFolderBusinessObject Get(long folderId)
+        {
+            var model = this.unitOfWork.Context.Folders.First(folder => folder.FolderId == folderId);
+
+            return new FolderBusinessObject(model, this.unitOfWork);
         }
     }
 }
