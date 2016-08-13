@@ -10,7 +10,9 @@
 namespace FFCG.SSIS.Core.Contract.Interface.Package
 {
     using System;
+    using System.Collections.Generic;
 
+    using FFCG.SSIS.Core.Contract.Interface.Operation;
     using FFCG.SSIS.Core.Contract.Interface.Project;
     using FFCG.SSIS.Core.Data.Model;
 
@@ -88,5 +90,10 @@ namespace FFCG.SSIS.Core.Contract.Interface.Package
         /// Gets the project.
         /// </summary>
         IProjectBusinessObject Project { get; }
+
+        /// <summary>
+        /// Gets the operations.
+        /// </summary>
+        IEnumerable<IOperationBusinessObject> Operations { get; }
     }
 }

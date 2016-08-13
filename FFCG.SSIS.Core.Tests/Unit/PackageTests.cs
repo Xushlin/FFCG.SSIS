@@ -82,5 +82,18 @@ namespace FFCG.SSIS.Core.Tests.Unit
 
             Assert.IsNotNull(package, "package != null");
         }
+
+        /// <summary>
+        /// The should be able to get operations.
+        /// </summary>
+        [Test]
+        public void ShouldBeAbleToGetOperations()
+        {
+            var package = this.repository.Get(IntegrationServicesContextData.PackageId1);
+            var operations = package.Operations.ToArray();
+
+            Assert.AreEqual(1, operations.Length, "number of operations");
+            Assert.IsTrue(operations.Any(op => op.OperationId == IntegrationServicesContextData.OperationId1), "operations.Any(op => op.OperationId == IntegrationServicesContextData.OperationId1)");
+        }
     }
 }

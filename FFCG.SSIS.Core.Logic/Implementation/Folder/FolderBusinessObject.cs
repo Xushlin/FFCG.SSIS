@@ -14,8 +14,10 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Folder
     using System.Linq;
 
     using FFCG.SSIS.Core.Contract.Interface.Folder;
+    using FFCG.SSIS.Core.Contract.Interface.Operation;
     using FFCG.SSIS.Core.Contract.Interface.Project;
     using FFCG.SSIS.Core.Data.Model;
+    using FFCG.SSIS.Core.Logic.Implementation.Operation;
     using FFCG.SSIS.Core.Logic.Implementation.Project;
 
     /// <summary>
@@ -52,5 +54,7 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Folder
         public DateTimeOffset CreatedTime => this.model.CreatedTime;
 
         public IEnumerable<IProjectBusinessObject> Projects => this.model.Projects.AsEnumerable().Select(proj => new ProjectBusinessObject(proj, this.unitOfWork));
+
+        public IEnumerable<IOperationBusinessObject> Operations => this.unitOfWork.Context.Operations.Where(op => op.ObjectType == (short)ObjectType.Folder && op.ObjectId == this.FolderId).AsEnumerable().Select(op => new OperationBusinessObject(op, this.unitOfWork));
     }
 }

@@ -14,10 +14,12 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Project
     using System.Linq;
 
     using FFCG.SSIS.Core.Contract.Interface.Folder;
+    using FFCG.SSIS.Core.Contract.Interface.Operation;
     using FFCG.SSIS.Core.Contract.Interface.Package;
     using FFCG.SSIS.Core.Contract.Interface.Project;
     using FFCG.SSIS.Core.Data.Model;
     using FFCG.SSIS.Core.Logic.Implementation.Folder;
+    using FFCG.SSIS.Core.Logic.Implementation.Operation;
     using FFCG.SSIS.Core.Logic.Implementation.Package;
 
     /// <summary>
@@ -68,5 +70,16 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Project
         public IFolderBusinessObject Folder => new FolderBusinessObject(this.model.Folder, this.unitOfWork);
 
         public IEnumerable<IPackageBusinessObject> Packages => this.model.Packages.AsEnumerable().Select(pkg => new PackageBusinessObject(pkg, this.unitOfWork));
+
+        public IEnumerable<IOperationBusinessObject> Operations
+        {
+            get
+            {
+                return this.unitOfWork.Context.Operations
+                    .Where(op => op.ObjectType == (short)ObjectType.Project && op.ObjectId == this.model.ProjectId)
+                    .AsEnumerable()
+                    .Select(op => new OperationBusinessObject(op, this.unitOfWork));
+            }
+        }
     }
 }

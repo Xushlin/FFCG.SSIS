@@ -84,5 +84,19 @@ namespace FFCG.SSIS.Core.Tests.Unit
 
             Assert.AreEqual(1, projects.Length);
         }
+
+        /// <summary>
+        /// The should be able to list operations.
+        /// </summary>
+        [Test]
+        public void ShouldBeAbleToListOperations()
+        {
+            var folder = this.repository.Get(IntegrationServicesContextData.FolderId1);
+            var operations = folder.Operations.ToArray();
+
+            Assert.AreEqual(1, operations.Length, "number of operations");
+            Assert.IsTrue(operations.Any(op => op.OperationId == IntegrationServicesContextData.OperationId2), "operations.Any(op => op.OperationId == IntegrationServicesContextData.OperationId2)");
+
+        }
     }
 }

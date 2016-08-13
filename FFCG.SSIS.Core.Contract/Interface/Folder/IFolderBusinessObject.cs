@@ -12,6 +12,7 @@ namespace FFCG.SSIS.Core.Contract.Interface.Folder
     using System;
     using System.Collections.Generic;
 
+    using FFCG.SSIS.Core.Contract.Interface.Operation;
     using FFCG.SSIS.Core.Contract.Interface.Project;
 
     /// <summary>
@@ -53,5 +54,10 @@ namespace FFCG.SSIS.Core.Contract.Interface.Folder
         /// Gets the projects.
         /// </summary>
         IEnumerable<IProjectBusinessObject> Projects { get; }
+
+        /// <summary>
+        /// Gets the operations.
+        /// </summary>
+        IEnumerable<IOperationBusinessObject> Operations { get; }
     }
 }

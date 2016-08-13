@@ -10,10 +10,14 @@
 namespace FFCG.SSIS.Core.Logic.Implementation.Package
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
+    using FFCG.SSIS.Core.Contract.Interface.Operation;
     using FFCG.SSIS.Core.Contract.Interface.Package;
     using FFCG.SSIS.Core.Contract.Interface.Project;
     using FFCG.SSIS.Core.Data.Model;
+    using FFCG.SSIS.Core.Logic.Implementation.Operation;
     using FFCG.SSIS.Core.Logic.Implementation.Project;
 
     /// <summary>
@@ -64,5 +68,16 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Package
         public DateTimeOffset? LastValidationTime => this.model.LastValidationTime;
 
         public IProjectBusinessObject Project => new ProjectBusinessObject(this.model.Project, this.unitOfWork);
+
+        public IEnumerable<IOperationBusinessObject> Operations
+        {
+            get
+            {
+                return this.unitOfWork.Context.Operations
+                    .Where(op => op.ObjectType == (short)ObjectType.Package && op.ObjectId == this.model.PackageId)
+                    .AsEnumerable()
+                    .Select(op => new OperationBusinessObject(op, this.unitOfWork));
+            }
+        }
     }
 }
