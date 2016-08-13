@@ -2,6 +2,10 @@
 {
     using System;
 
+    using FFCG.SSIS.Core.Contract.Interface.Folder;
+    using FFCG.SSIS.Core.Contract.Interface.Package;
+    using FFCG.SSIS.Core.Contract.Interface.Project;
+
     public interface IOperationBusinessObject
     {
         /// <summary>
@@ -83,5 +87,20 @@
         /// Gets the machine name.
         /// </summary>
         string MachineName { get; }
+
+        /// <summary>
+        /// Gets the folder.
+        /// </summary>
+        IFolderBusinessObject Folder { get; }
+
+        /// <summary>
+        /// Gets the project.
+        /// </summary>
+        IProjectBusinessObject Project { get; }
+
+        /// <summary>
+        /// Gets the package.
+        /// </summary>
+        IPackageBusinessObject Package { get; }
     }
 }

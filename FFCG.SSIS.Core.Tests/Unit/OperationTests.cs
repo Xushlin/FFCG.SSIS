@@ -58,5 +58,54 @@ namespace FFCG.SSIS.Core.Tests.Unit
 
             Assert.AreEqual(this.mockContext.OperationSet.Count(), operations.Length, "Number of operations.");
         }
+
+        /// <summary>
+        /// The should be able to get an operation.
+        /// </summary>
+        [Test]
+        public void ShouldBeAbleToGetAnOperation()
+        {
+            var operation = this.repository.Get(IntegrationServicesContextData.OperationId1);
+
+            Assert.IsNotNull(operation, "operation != null");
+        }
+
+        /// <summary>
+        /// The should be able to get a folder.
+        /// </summary>
+        [Test]
+        public void ShouldBeAbleToGetAFolder()
+        {
+            var operation = this.repository.Get(IntegrationServicesContextData.OperationId2);
+            var folder = operation.Folder;
+
+            Assert.IsNotNull(folder, "folder != null");
+        }
+
+        /// <summary>
+        /// The should be able to get a project.
+        /// </summary>
+        [Test]
+        public void ShouldBeAbleToGetAProject()
+        {
+            var operation = this.repository.Get(IntegrationServicesContextData.OperationId3);
+            var project = operation.Project;
+
+
+            Assert.IsNotNull(project, "project != null");
+        }
+
+        /// <summary>
+        /// The should be able to get a package.
+        /// </summary>
+        [Test]
+        public void ShouldBeAbleToGetAPackage()
+        {
+            var operation = this.repository.Get(IntegrationServicesContextData.OperationId1);
+            var package = operation.Package;
+
+
+            Assert.IsNotNull(package, "package != null");
+        }
     }
 }

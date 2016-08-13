@@ -12,9 +12,16 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Operation
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
+    using FFCG.SSIS.Core.Contract.Interface.Folder;
     using FFCG.SSIS.Core.Contract.Interface.Operation;
+    using FFCG.SSIS.Core.Contract.Interface.Package;
+    using FFCG.SSIS.Core.Contract.Interface.Project;
     using FFCG.SSIS.Core.Data.Model;
+    using FFCG.SSIS.Core.Logic.Implementation.Folder;
+    using FFCG.SSIS.Core.Logic.Implementation.Package;
+    using FFCG.SSIS.Core.Logic.Implementation.Project;
 
     /// <summary>
     /// The operation business object.
@@ -68,5 +75,65 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Operation
         public string ServerName => this.model.ServerName;
 
         public string MachineName => this.model.MachineName;
+
+        public IFolderBusinessObject Folder
+        {
+            get
+            {
+                switch (this.ObjectType)
+                {
+                    case Contract.Interface.Operation.ObjectType.Folder:
+                        if (this.model.ObjectId.HasValue)
+                        {
+                            var folder = this.unitOfWork.Context.Folders.First(f => f.FolderId == this.model.ObjectId);
+                            return new FolderBusinessObject(folder, this.unitOfWork);
+                        }
+
+                        return default(IFolderBusinessObject);
+                    default:
+                        return default(IFolderBusinessObject);
+                }
+            }
+        }
+
+        public IProjectBusinessObject Project
+        {
+            get
+            {
+                switch (this.ObjectType)
+                {
+                    case Contract.Interface.Operation.ObjectType.Project:
+                        if (this.model.ObjectId.HasValue)
+                        {
+                            var project = this.unitOfWork.Context.Projects.First(p => p.ProjectId == this.model.ObjectId);
+                            return new ProjectBusinessObject(project, this.unitOfWork);
+                        }
+
+                        return default(IProjectBusinessObject);
+                    default:
+                        return default(IProjectBusinessObject);
+                }
+            }
+        }
+
+        public IPackageBusinessObject Package
+        {
+            get
+            {
+                switch (this.ObjectType)
+                {
+                    case Contract.Interface.Operation.ObjectType.Package:
+                        if (this.model.ObjectId.HasValue)
+                        {
+                            var package = this.unitOfWork.Context.Packages.First(p => p.PackageId == this.model.ObjectId);
+                            return new PackageBusinessObject(package, this.unitOfWork);
+                        }
+
+                        return default(IPackageBusinessObject);
+                    default:
+                        return default(IPackageBusinessObject);
+                }
+            }
+        }
     }
 }

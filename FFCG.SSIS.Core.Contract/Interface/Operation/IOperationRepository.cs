@@ -34,5 +34,7 @@ namespace FFCG.SSIS.Core.Contract.Interface.Operation
         /// The <see cref="IOperationBusinessObject"/>.
         /// </returns>
         IOperationBusinessObject Get(long operationId);
+
+
     }
 }

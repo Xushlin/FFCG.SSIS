@@ -10,6 +10,7 @@
 namespace FFCG.SSIS.Core.Logic.Implementation.Operation
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     using FFCG.SSIS.Core.Contract.Interface;
     using FFCG.SSIS.Core.Contract.Interface.Operation;
@@ -37,7 +38,8 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Operation
         /// </returns>
         public IEnumerable<IOperationBusinessObject> List()
         {
-            throw new System.NotImplementedException();
+            return
+                this.unitOfWork.Context.Operations.AsEnumerable().Select(op => new OperationBusinessObject(op, this.unitOfWork));
         }
 
         /// <summary>
@@ -51,7 +53,9 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Operation
         /// </returns>
         public IOperationBusinessObject Get(long operationId)
         {
-            throw new System.NotImplementedException();
+            var model = this.unitOfWork.Context.Operations.First(op => op.OperationId == operationId);
+
+            return new OperationBusinessObject(model, this.unitOfWork); 
         }
     }
 }
