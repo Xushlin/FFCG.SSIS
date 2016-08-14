@@ -17,7 +17,7 @@ namespace FFCG.SSIS.Service.Contract.Interface
     /// <summary>
     /// The PackageService interface.
     /// </summary>
-    [ServiceContract(Name = "SqlServiceIntegrationServicesService", Namespace = Constants.Namespace)]
+    [ServiceContract(Name = "SqlServerIntegrationServicesService", Namespace = Constants.Namespace)]
     public interface ISqlServerIntegrationServicesService
     {
         /// <summary>
