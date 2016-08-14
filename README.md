@@ -13,7 +13,8 @@ It is under development and currently exposes basic functionality for listing, r
 ## API
 The service exposes the following methods.
 
-OperationDescription ExecutePackage(string packageName, string projectName, string folderName, PackageParameters packageParameters);
+### ExecutePackage
+Execute a package on the SSIS server.
 
 ### GetPackage
 Get package information for a single package.
