@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace FFCG.SSIS.Core.Logic.Implementation
+namespace FFCG.SSIS.Tools.Logic.Implementation
 {
     using System;
     using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace FFCG.SSIS.Core.Logic.Implementation
     using System.Linq.Expressions;
     using System.Reflection;
 
-    using FFCG.SSIS.Core.Contract.Interface;
+    using FFCG.SSIS.Tools.Logic.Interface;
 
     /// <summary>
     /// The object provider.

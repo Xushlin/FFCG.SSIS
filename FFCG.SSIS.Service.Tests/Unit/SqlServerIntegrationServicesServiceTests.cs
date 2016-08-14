@@ -17,13 +17,14 @@ namespace FFCG.SSIS.Service.Tests.Unit
     using FFCG.SSIS.Service.Contract.Interface;
     using FFCG.SSIS.Service.Contract.Model;
     using FFCG.SSIS.Service.Logic.Implementation;
+    using FFCG.SSIS.Tools.Logic.Implementation;
 
     using Moq;
 
     using NUnit.Framework;
 
     /// <summary>
-    /// The SQL server integration services service tests.
+    /// The SQL server integration services serverIntegrationServicesService tests.
     /// </summary>
     [TestFixture]
     public class SqlServerIntegrationServicesServiceTests
@@ -34,9 +35,9 @@ namespace FFCG.SSIS.Service.Tests.Unit
         private IUnitOfWork unitOfWork;
 
         /// <summary>
-        /// The service.
+        /// The serverIntegrationServicesService.
         /// </summary>
-        private ISqlServiceIntegrationServicesService service;
+        private ISqlServerIntegrationServicesService service;
 
         /// <summary>
         /// The mock context.
@@ -181,6 +182,17 @@ namespace FFCG.SSIS.Service.Tests.Unit
             var project = this.service.GetProject(IntegrationServicesContextData.ProjectName1, IntegrationServicesContextData.FolderName1);
 
             Assert.IsNotNull(project, "project != null");
+        }
+
+        /// <summary>
+        /// The should be able to get an operation by name.
+        /// </summary>
+        [Test]
+        public void ShouldBeAbleToGetAnOperationByName()
+        {
+            var operation = this.service.GetOperation(IntegrationServicesContextData.OperationId1);
+
+            Assert.IsNotNull(operation, "operation != null");
         }
 
         /// <summary>

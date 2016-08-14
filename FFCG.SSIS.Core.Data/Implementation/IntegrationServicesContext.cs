@@ -48,10 +48,20 @@ namespace FFCG.SSIS.Core.Data.Implementation
         #endregion // SQL
 
         public IntegrationServicesContext(
-            string connectionString = ConnectionStringName,
-            IDatabaseInitializer<IntegrationServicesContext> initializer = default(IDatabaseInitializer<IntegrationServicesContext>)) : base(connectionString)
+            string connectionString,
+            IDatabaseInitializer<IntegrationServicesContext> initializer) : base(connectionString)
         {
             Database.SetInitializer(initializer);
+        }
+
+        public IntegrationServicesContext()
+            :this(ConnectionStringName, default(IDatabaseInitializer<IntegrationServicesContext>))
+        {
+        }
+
+        public IntegrationServicesContext(string connectionString)
+            : this(connectionString, default(IDatabaseInitializer<IntegrationServicesContext>))
+        {
         }
 
         public IDbSet<Operation> Operations => this.Set<Operation>();

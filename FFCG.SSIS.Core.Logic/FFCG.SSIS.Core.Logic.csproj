@@ -51,7 +51,6 @@
   <ItemGroup>
     <Compile Include="Implementation\Folder\FolderBusinessObject.cs" />
     <Compile Include="Implementation\Folder\FolderRepository.cs" />
-    <Compile Include="Implementation\ObjectProvider.cs" />
     <Compile Include="Implementation\Operation\OperationBusinessObject.cs" />
     <Compile Include="Implementation\Operation\OperationRepository.cs" />
     <Compile Include="Implementation\Package\PackageBusinessObject.cs" />
@@ -69,6 +68,10 @@
     <ProjectReference Include="..\FFCG.SSIS.Core.Data\FFCG.SSIS.Core.Data.csproj">
       <Project>{468a76de-86f1-46f2-9cc4-0f5b70af338d}</Project>
       <Name>FFCG.SSIS.Core.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FFCG.SSIS.Tools.Logic\FFCG.SSIS.Tools.Logic.csproj">
+      <Project>{150cee90-d770-4b8c-b869-1e25d3ba1baf}</Project>
+      <Name>FFCG.SSIS.Tools.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

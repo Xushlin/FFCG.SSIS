@@ -71,7 +71,6 @@
     <Compile Include="Mocks\IntegrationServicesContextSeeder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit\FolderTests.cs" />
-    <Compile Include="Unit\ObjectProviderTests.cs" />
     <Compile Include="Unit\OperationTests.cs" />
     <Compile Include="Unit\PackageTests.cs" />
     <Compile Include="Unit\ProjectTests.cs" />
@@ -89,6 +88,10 @@
     <ProjectReference Include="..\FFCG.SSIS.Core.Logic\FFCG.SSIS.Core.Logic.csproj">
       <Project>{4f0e45bd-b2dc-4d7b-9388-fdea7fb349ec}</Project>
       <Name>FFCG.SSIS.Core.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FFCG.SSIS.Tools.Logic\FFCG.SSIS.Tools.Logic.csproj">
+      <Project>{150cee90-d770-4b8c-b869-1e25d3ba1baf}</Project>
+      <Name>FFCG.SSIS.Tools.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
