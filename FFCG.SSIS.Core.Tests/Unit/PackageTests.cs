@@ -16,6 +16,8 @@ namespace FFCG.SSIS.Core.Tests.Unit
     using FFCG.SSIS.Core.Contract.Interface.Package;
     using FFCG.SSIS.Core.Logic.Implementation;
     using FFCG.SSIS.Core.Tests.Mocks;
+    using FFCG.SSIS.Tools.Logic.Implementation;
+    using FFCG.SSIS.Tools.Logic.Interface;
 
     using Moq;
 

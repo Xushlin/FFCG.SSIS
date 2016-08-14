@@ -20,9 +20,9 @@ namespace FFCG.SSIS.Service.Logic.Implementation
     using FFCG.SSIS.Service.Contract.Model;
 
     /// <summary>
-    /// The SQL server integration services service.
+    /// The SQL server integration services serverIntegrationServicesService.
     /// </summary>
-    public class SqlServerIntegrationServicesService : ISqlServiceIntegrationServicesService
+    public class SqlServerIntegrationServicesService : ISqlServerIntegrationServicesService
     {
         /// <summary>
         /// The unit of work.
@@ -120,6 +120,20 @@ namespace FFCG.SSIS.Service.Logic.Implementation
         }
 
         /// <summary>
+        /// The get operation.
+        /// </summary>
+        /// <param name="operationId">
+        /// The operation id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="OperationDescriptions"/>.
+        /// </returns>
+        public OperationDescription GetOperation(long operationId)
+        {
+            return ToServiceModel(this.unitOfWork.Operations.Get(operationId));
+        }
+
+        /// <summary>
         /// The list operation messages.
         /// </summary>
         /// <param name="operationId">
@@ -195,7 +209,7 @@ namespace FFCG.SSIS.Service.Logic.Implementation
         }
 
         /// <summary>
-        /// The to service model.
+        /// The to serverIntegrationServicesService model.
         /// </summary>
         /// <param name="package">
         /// The package.
@@ -228,7 +242,7 @@ namespace FFCG.SSIS.Service.Logic.Implementation
         }
 
         /// <summary>
-        /// The to service model.
+        /// The to serverIntegrationServicesService model.
         /// </summary>
         /// <param name="operation">
         /// The operation.
@@ -251,7 +265,7 @@ namespace FFCG.SSIS.Service.Logic.Implementation
         }
 
         /// <summary>
-        /// The to service model.
+        /// The to serverIntegrationServicesService model.
         /// </summary>
         /// <param name="message">
         /// The message.
@@ -271,7 +285,7 @@ namespace FFCG.SSIS.Service.Logic.Implementation
         }
 
         /// <summary>
-        /// The to service model.
+        /// The to serverIntegrationServicesService model.
         /// </summary>
         /// <param name="project">
         /// The project.
@@ -291,7 +305,7 @@ namespace FFCG.SSIS.Service.Logic.Implementation
         }
 
         /// <summary>
-        /// The to service model.
+        /// The to serverIntegrationServicesService model.
         /// </summary>
         /// <param name="folder">
         /// The folder.

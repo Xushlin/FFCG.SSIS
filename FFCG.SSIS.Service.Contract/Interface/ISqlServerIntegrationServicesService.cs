@@ -1,14 +1,15 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ISqlServiceIntegrationServicesService.cs" company="Erik Cedheim">
+// <copyright file="ISqlServerIntegrationServicesService.cs" company="Erik Cedheim">
 //   Copyright 2016 Erik Cedheim
 // </copyright>
 // <summary>
-//   Defines the ISqlServiceIntegrationServicesService type.
+//   Defines the ISqlServerIntegrationServicesService type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace FFCG.SSIS.Service.Contract.Interface
 {
+    using System.Diagnostics.Eventing.Reader;
     using System.ServiceModel;
 
     using FFCG.SSIS.Service.Contract.Model;
@@ -17,7 +18,7 @@ namespace FFCG.SSIS.Service.Contract.Interface
     /// The PackageService interface.
     /// </summary>
     [ServiceContract(Name = "SqlServiceIntegrationServicesService", Namespace = Constants.Namespace)]
-    public interface ISqlServiceIntegrationServicesService
+    public interface ISqlServerIntegrationServicesService
     {
         /// <summary>
         /// The execute.
@@ -90,6 +91,18 @@ namespace FFCG.SSIS.Service.Contract.Interface
         /// </returns>
         [OperationContract(Name = "ListOperations")]
         OperationDescriptions ListOperations(string packageName, string projectName, string folderName);
+
+        /// <summary>
+        /// The get operation.
+        /// </summary>
+        /// <param name="operationId">
+        /// The operation id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="OperationDescriptions"/>.
+        /// </returns>
+        [OperationContract(Name = "GetOperation")]
+        OperationDescription GetOperation(long operationId);
 
         /// <summary>
         /// The list operation messages.

@@ -18,6 +18,7 @@ namespace FFCG.SSIS.Core.Logic.Implementation
     using FFCG.SSIS.Core.Contract.Interface.Package;
     using FFCG.SSIS.Core.Contract.Interface.Project;
     using FFCG.SSIS.Core.Data.Interface;
+    using FFCG.SSIS.Tools.Logic.Interface;
 
     /// <summary>
     /// The unit of work.

@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="Interface\ISqlServiceIntegrationServicesService.cs" />
+    <Compile Include="Interface\ISqlServerIntegrationServicesService.cs" />
     <Compile Include="Model\FolderDescription.cs" />
     <Compile Include="Model\FolderDescriptions.cs" />
     <Compile Include="Model\MessageSourceType.cs" />
