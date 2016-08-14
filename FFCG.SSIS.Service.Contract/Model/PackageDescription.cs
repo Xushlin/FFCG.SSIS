@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace FFCG.SSIS.PackageRunner.Contract.Model
+namespace FFCG.SSIS.Service.Contract.Model
 {
     using System.Runtime.Serialization;
 
@@ -34,11 +34,5 @@ namespace FFCG.SSIS.PackageRunner.Contract.Model
         /// </summary>
         [DataMember(Name = "ProjectName")]
         public string ProjectName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the parameters.
-        /// </summary>
-        [DataMember(Name = "Parameters")]
-        public Parameters Parameters { get; set; }
     }
 }

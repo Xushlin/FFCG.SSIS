@@ -1,22 +1,22 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Constants.cs" company="Erik Cedheim">
+// <copyright file="PackageParameter.cs" company="Erik Cedheim">
 //   Copyright 2016 Erik Cedheim
 // </copyright>
 // <summary>
-//   Defines the Constants type.
+//   Defines the PackageParameter type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace FFCG.SSIS.PackageRunner.Contract
+namespace FFCG.SSIS.Service.Contract.Model
 {
+    using System.Runtime.Serialization;
+
     /// <summary>
-    /// The constants.
+    /// The parameter.
     /// </summary>
-    public static class Constants
+    [DataContract(Name = "PackageParameter", Namespace = Constants.Namespace)]
+    public class PackageParameter
     {
-        /// <summary>
-        /// The namespace.
-        /// </summary>
-        public const string Namespace = @"http://schemas.ffcg.se/ssis/packagerunner/1.0";
+        
     }
 }

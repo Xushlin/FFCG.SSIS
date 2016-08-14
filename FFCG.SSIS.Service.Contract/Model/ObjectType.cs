@@ -7,14 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace FFCG.SSIS.PackageRunner.Contract.Model
+namespace FFCG.SSIS.Service.Contract.Model
 {
     using System.Runtime.Serialization;
 
     /// <summary>
     /// The object type.
     /// </summary>
-    [DataContract(Name = "ObjectType")]
+    [DataContract(Name = "ObjectType", Namespace = Constants.Namespace)]
     public enum ObjectType
     {
         /// <summary>
