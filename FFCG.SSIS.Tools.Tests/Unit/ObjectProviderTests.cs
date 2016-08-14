@@ -7,12 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace FFCG.SSIS.Core.Tests.Unit
+namespace FFCG.SSIS.Tools.Tests.Unit
 {
     using System.Collections.Generic;
 
-    using FFCG.SSIS.Core.Contract.Interface;
-    using FFCG.SSIS.Core.Logic.Implementation;
+    using FFCG.SSIS.Tools.Logic.Implementation;
+    using FFCG.SSIS.Tools.Logic.Interface;
 
     using NUnit.Framework;
 

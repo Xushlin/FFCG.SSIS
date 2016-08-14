@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace FFCG.SSIS.Core.Contract.Interface
+namespace FFCG.SSIS.Tools.Logic.Interface
 {
     using System;
     using System.Collections.Generic;

@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Service="FFCG.SSIS.Service.Logic.Implementation.SqlServerIntegrationServicesService" Factory="FFCG.SSIS.Tools.Logic.Implementation.TinyIoCServiceHostFactory" %>
