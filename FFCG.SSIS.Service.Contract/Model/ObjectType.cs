@@ -18,10 +18,10 @@ namespace FFCG.SSIS.Service.Contract.Model
     public enum ObjectType
     {
         /// <summary>
-        /// The server level.
+        /// The folder.
         /// </summary>
-        [EnumMember(Value = "Server")]
-        Server = 50,
+        [EnumMember(Value = "Folder")]
+        Folder = 10,
 
         /// <summary>
         /// The project.
@@ -33,6 +33,19 @@ namespace FFCG.SSIS.Service.Contract.Model
         /// The package.
         /// </summary>
         [EnumMember(Value = "Package")]
-        Package = 30
+        Package = 30,
+
+        /// <summary>
+        /// The environment.
+        /// </summary>
+        [EnumMember(Value = "Environment")]
+        Environment = 40,
+
+        /// <summary>
+        /// The instance of execution.
+        /// </summary>
+        [EnumMember(Value = "Server")]
+        Server = 50
+
     }
 }

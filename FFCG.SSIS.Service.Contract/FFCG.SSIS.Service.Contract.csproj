@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,13 +43,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="Interface\IOperationService.cs" />
-    <Compile Include="Interface\IPackageService.cs" />
+    <Compile Include="Interface\ISqlServiceIntegrationServicesService.cs" />
+    <Compile Include="Model\FolderDescription.cs" />
+    <Compile Include="Model\FolderDescriptions.cs" />
     <Compile Include="Model\MessageSourceType.cs" />
     <Compile Include="Model\MessageType.cs" />
     <Compile Include="Model\ObjectType.cs" />
+    <Compile Include="Model\OperationDescriptions.cs" />
     <Compile Include="Model\OperationDescription.cs" />
     <Compile Include="Model\OperationMessage.cs" />
+    <Compile Include="Model\OperationMessages.cs" />
+    <Compile Include="Model\OperationStatus.cs" />
+    <Compile Include="Model\OperationType.cs" />
     <Compile Include="Model\PackageDescription.cs" />
     <Compile Include="Model\PackageDescriptions.cs" />
     <Compile Include="Model\PackageParameter.cs" />
