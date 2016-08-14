@@ -1,14 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{23E532BA-ACDA-49E4-A414-7D6F94C78403}</ProjectGuid>
+    <ProjectGuid>abdb64bf-23da-430a-aa43-e5404b233e9a</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FFCG.SSIS.Service.Contract</RootNamespace>
-    <AssemblyName>FFCG.SSIS.Service.Contract</AssemblyName>
+    <RootNamespace>FFCG.SSIS.Service.Tests</RootNamespace>
+    <AssemblyName>FFCG.SSIS.Service.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,37 +30,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System"/>
+    
+    <Reference Include="System.Core"/>
+    <Reference Include="System.Xml.Linq"/>
+    <Reference Include="System.Data.DataSetExtensions"/>
+    
+    
+    <Reference Include="Microsoft.CSharp"/>
+    
+    <Reference Include="System.Data"/>
+    
+    <Reference Include="System.Net.Http"/>
+    
+    <Reference Include="System.Xml"/>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants.cs" />
-    <Compile Include="Interface\ISqlServiceIntegrationServicesService.cs" />
-    <Compile Include="Model\FolderDescription.cs" />
-    <Compile Include="Model\FolderDescriptions.cs" />
-    <Compile Include="Model\MessageSourceType.cs" />
-    <Compile Include="Model\MessageType.cs" />
-    <Compile Include="Model\ObjectType.cs" />
-    <Compile Include="Model\OperationDescriptions.cs" />
-    <Compile Include="Model\OperationDescription.cs" />
-    <Compile Include="Model\OperationMessage.cs" />
-    <Compile Include="Model\OperationMessages.cs" />
-    <Compile Include="Model\OperationStatus.cs" />
-    <Compile Include="Model\OperationType.cs" />
-    <Compile Include="Model\PackageDescription.cs" />
-    <Compile Include="Model\PackageDescriptions.cs" />
-    <Compile Include="Model\PackageParameter.cs" />
-    <Compile Include="Model\PackageParameters.cs" />
-    <Compile Include="Model\ProjectDescription.cs" />
-    <Compile Include="Model\ProjectDescriptions.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -71,4 +57,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-</Project>
+
+ </Project>
