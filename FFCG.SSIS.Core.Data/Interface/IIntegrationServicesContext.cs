@@ -40,6 +40,16 @@ namespace FFCG.SSIS.Core.Data.Interface
         IDbSet<Package> Packages { get; }
 
         /// <summary>
+        /// Gets the event messages.
+        /// </summary>
+        IDbSet<EventMessage> EventMessages { get; }
+
+        /// <summary>
+        /// Gets the operation messages.
+        /// </summary>
+        IDbSet<OperationMessage> OperationMessages { get; }
+
+        /// <summary>
         /// The create execution.
         /// </summary>
         /// <param name="packageName">

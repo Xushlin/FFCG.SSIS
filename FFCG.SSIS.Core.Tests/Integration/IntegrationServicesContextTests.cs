@@ -21,7 +21,7 @@ namespace FFCG.SSIS.Core.Tests.Integration
     /// The integration services context tests.
     /// </summary>
     [TestFixture]
-    [Ignore("Integration tests, requires connection to working SSIS environment and database.")]
+    //[Ignore("Integration tests, requires connection to working SSIS environment and database.")]
     public class IntegrationServicesContextTests
     {
         /// <summary>
@@ -169,6 +169,60 @@ namespace FFCG.SSIS.Core.Tests.Integration
             while (Data.OperationRunningStatuses.Contains(status));
         }
 
+        [Test]
+        public void ShouldBeAbleToFetchEventMessages()
+        {
+            var eventMessages = this.context.EventMessages;
+
+            Assert.IsTrue(eventMessages.Any(), "eventMessages.Any()");
+        }
+
+        [Test]
+        public void ShouldBeAbleToFetchOperationFromEventMessage()
+        {
+            var eventMessage = this.context.EventMessages.First();
+            var operation = eventMessage.Operation;
+
+            Assert.IsNotNull(operation);
+        }
+
+        [Test]
+        public void ShouldBeAbleToFetchEventMessagesFromOperation()
+        {
+            var operation = this.context.Operations.First(op => op.OperationId == Data.OperationId1);
+            var eventMessages = operation.EventMessages;
+
+            Assert.IsTrue(eventMessages.Any(), "eventMessages.Any()");
+        }
+
+        [Test]
+        public void ShouldBeAbleToFetchOperationMessage()
+        {
+            var operationMessages = this.context.OperationMessages;
+
+            Assert.IsTrue(operationMessages.Any(), "operationMessages.Any()");
+        }
+
+
+        [Test]
+        public void ShouldBeAbleToFetchOperationFromOperationMessage()
+        {
+            var operationMessage = this.context.OperationMessages.First();
+            var operation = operationMessage.Operation;
+
+            Assert.IsNotNull(operation);
+        }
+
+        [Test]
+        public void ShouldBeAbleToFetchOperationMessagesFromOperation()
+        {
+            var operation = this.context.Operations.First(op => op.OperationId == Data.OperationId1);
+            var operationMessages = operation.OperationMessages;
+
+            Assert.IsTrue(operationMessages.Any(), "eventMessages.Any()");
+        }
+
+
         /// <summary>
         /// The data.
         /// </summary>
@@ -203,6 +257,8 @@ namespace FFCG.SSIS.Core.Tests.Integration
             /// The parameter value.
             /// </summary>
             public const string ParameterValue = @"C:\temp\SSIS Tutorial Sample Data\Currencies";
+
+            public const long OperationId1 = 2;
 
             /// <summary>
             /// The operation stopped statuses.

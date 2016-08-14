@@ -62,6 +62,10 @@ namespace FFCG.SSIS.Core.Data.Implementation
 
         public IDbSet<Package> Packages => this.Set<Package>();
 
+        public IDbSet<EventMessage> EventMessages => this.Set<EventMessage>();
+
+        public IDbSet<OperationMessage> OperationMessages => this.Set<OperationMessage>();
+
         /// <summary>
         /// The create execution.
         /// </summary>
@@ -150,10 +154,20 @@ namespace FFCG.SSIS.Core.Data.Implementation
                 .HasRequired(p => p.Folder)
                 .WithMany(f => f.Projects)
                 .HasForeignKey(p => p.FolderId);
-            modelBuilder.Entity<Package>().HasKey(pkg => pkg.PackageId)
+            modelBuilder.Entity<Package>()
+                .HasKey(pkg => pkg.PackageId)
                 .HasRequired(pkg => pkg.Project)
                 .WithMany(p => p.Packages)
                 .HasForeignKey(pkg => pkg.ProjectId);
+            modelBuilder.Entity<EventMessage>()
+                .HasKey(em => em.EventMessageId)
+                .HasRequired(em => em.Operation)
+                .WithMany(op => op.EventMessages)
+                .HasForeignKey(em => em.OperationId);
+            modelBuilder.Entity<OperationMessage>().HasKey(opm => opm.OperationMessageId)
+                .HasRequired(opm => opm.Operation)
+                .WithMany(op => op.OperationMessages)
+                .HasForeignKey(opm => opm.OperationId); ;
         }
     }
 }
