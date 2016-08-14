@@ -46,6 +46,9 @@
     <Compile Include="Interface\Operation\IOperationBusinessObject.cs" />
     <Compile Include="Interface\Operation\IOperationRepository.cs" />
     <Compile Include="Interface\IUnitOfWork.cs" />
+    <Compile Include="Interface\Operation\OperationMessage.cs" />
+    <Compile Include="Interface\Operation\MessageSourceType.cs" />
+    <Compile Include="Interface\Operation\MessageType.cs" />
     <Compile Include="Interface\Operation\ObjectType.cs" />
     <Compile Include="Interface\Operation\OperationStatus.cs" />
     <Compile Include="Interface\Operation\OperationType.cs" />
