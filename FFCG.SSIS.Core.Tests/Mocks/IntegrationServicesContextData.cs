@@ -121,6 +121,8 @@ namespace FFCG.SSIS.Core.Tests.Mocks
             var folder1 = new Folder { FolderId = FolderId1, Name = FolderName1, Projects = new HashSet<Project> { project1 } };
             var folder2 = new Folder { FolderId = FolderId2, Name = FolderName2, Projects = new HashSet<Project> { project2 } };
 
+            project1.Folder = folder1;
+            project2.Folder = folder2;
             context.Folders.Add(folder1);
             context.Folders.Add(folder2);
 

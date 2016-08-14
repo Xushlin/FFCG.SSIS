@@ -51,6 +51,7 @@
     <Compile Include="Interface\Operation\OperationType.cs" />
     <Compile Include="Interface\Package\IPackageBusinessObject.cs" />
     <Compile Include="Interface\Package\IPackageRepository.cs" />
+    <Compile Include="Interface\Package\PackageParameter.cs" />
     <Compile Include="Interface\Project\IProjectBusinessObject.cs" />
     <Compile Include="Interface\Project\IProjectRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

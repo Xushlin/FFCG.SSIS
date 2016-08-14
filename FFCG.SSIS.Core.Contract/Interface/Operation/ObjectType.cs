@@ -12,7 +12,7 @@ namespace FFCG.SSIS.Core.Contract.Interface.Operation
     /// <summary>
     /// The object type.
     /// </summary>
-    public enum     ObjectType
+    public enum ObjectType
     {
         /// <summary>
         /// The folder.
@@ -37,6 +37,6 @@ namespace FFCG.SSIS.Core.Contract.Interface.Operation
         /// <summary>
         /// The instance of execution.
         /// </summary>
-        InstanceOfExecution = 50
+        Server = 50
     }
 }

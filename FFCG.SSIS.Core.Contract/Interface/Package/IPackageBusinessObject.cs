@@ -95,5 +95,16 @@ namespace FFCG.SSIS.Core.Contract.Interface.Package
         /// Gets the operations.
         /// </summary>
         IEnumerable<IOperationBusinessObject> Operations { get; }
+
+        /// <summary>
+        /// The execute.
+        /// </summary>
+        /// <param name="parameters">
+        /// The parameters.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IOperationBusinessObject"/>.
+        /// </returns>
+        IOperationBusinessObject Execute(IEnumerable<PackageParameter> parameters);
     }
 }

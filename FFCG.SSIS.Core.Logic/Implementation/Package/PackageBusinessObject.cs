@@ -79,5 +79,23 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Package
                     .Select(op => new OperationBusinessObject(op, this.unitOfWork));
             }
         }
+
+        public IOperationBusinessObject Execute(IEnumerable<PackageParameter> parameters)
+        {
+            var project = this.model.Project;
+            var folder = project.Folder;
+
+            var operationId = this.unitOfWork.Context.CreateExecution(this.model.Name, folder.Name, project.Name);
+
+            foreach (var parameter in parameters)
+            {
+                this.unitOfWork.Context.SetExecutionParameterValue(operationId, (short)parameter.ObjectType, parameter.ParameterName, parameter.Value);
+            }
+
+            this.unitOfWork.Context.StartExecution(operationId);
+
+            var operation = this.unitOfWork.Context.Operations.First(o => o.OperationId == operationId);
+            return new OperationBusinessObject(operation, this.unitOfWork);
+        }
     }
 }
