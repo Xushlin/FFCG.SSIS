@@ -1,6 +1,7 @@
 ﻿namespace FFCG.SSIS.Core.Contract.Interface.Operation
 {
     using System;
+    using System.Collections.Generic;
 
     using FFCG.SSIS.Core.Contract.Interface.Folder;
     using FFCG.SSIS.Core.Contract.Interface.Package;
@@ -102,5 +103,10 @@
         /// Gets the package.
         /// </summary>
         IPackageBusinessObject Package { get; }
+
+        /// <summary>
+        /// Gets the messages.
+        /// </summary>
+        IEnumerable<OperationMessage> Messages { get; }
     }
 }
