@@ -56,6 +56,21 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Project
         }
 
         /// <summary>
+        /// The list.
+        /// </summary>
+        /// <param name="folderName">
+        /// The folder name.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IEnumerable"/>.
+        /// </returns>
+        public IEnumerable<IProjectBusinessObject> List(string folderName)
+        {
+            var folder = this.unitOfWork.Context.Folders.First(f => f.Name == folderName);
+            return folder.Projects.AsEnumerable().Select(proj => new ProjectBusinessObject(proj, this.unitOfWork));
+        }
+
+        /// <summary>
         /// The get.
         /// </summary>
         /// <param name="projectId">
@@ -67,6 +82,25 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Project
         public IProjectBusinessObject Get(long projectId)
         {
             var project = this.unitOfWork.Context.Projects.First(proj => proj.ProjectId == projectId);
+
+            return new ProjectBusinessObject(project, this.unitOfWork);
+        }
+
+        /// <summary>
+        /// The get.
+        /// </summary>
+        /// <param name="projectName">
+        /// The project name.
+        /// </param>
+        /// <param name="folderName">
+        /// The folder name.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IProjectBusinessObject"/>.
+        /// </returns>
+        public IProjectBusinessObject Get(string projectName, string folderName)
+        {
+            var project = this.unitOfWork.Context.Projects.First(proj => proj.Name == projectName && proj.Folder.Name == folderName);
 
             return new ProjectBusinessObject(project, this.unitOfWork);
         }

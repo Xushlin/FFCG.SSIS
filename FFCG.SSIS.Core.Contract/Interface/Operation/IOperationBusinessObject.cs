@@ -1,4 +1,13 @@
-﻿namespace FFCG.SSIS.Core.Contract.Interface.Operation
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="IOperationBusinessObject.cs" company="Erik Cedheim">
+//   Copyright 2016 Erik Cedheim
+// </copyright>
+// <summary>
+//   The OperationBusinessObject interface.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace FFCG.SSIS.Core.Contract.Interface.Operation
 {
     using System;
     using System.Collections.Generic;
@@ -7,6 +16,9 @@
     using FFCG.SSIS.Core.Contract.Interface.Package;
     using FFCG.SSIS.Core.Contract.Interface.Project;
 
+    /// <summary>
+    /// The OperationBusinessObject interface.
+    /// </summary>
     public interface IOperationBusinessObject
     {
         /// <summary>

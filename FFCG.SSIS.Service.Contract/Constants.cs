@@ -1,22 +1,22 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Parameter.cs" company="Erik Cedheim">
+// <copyright file="Constants.cs" company="Erik Cedheim">
 //   Copyright 2016 Erik Cedheim
 // </copyright>
 // <summary>
-//   Defines the Parameter type.
+//   Defines the Constants type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace FFCG.SSIS.PackageRunner.Contract.Model
+namespace FFCG.SSIS.Service.Contract
 {
-    using System.Runtime.Serialization;
-
     /// <summary>
-    /// The parameter.
+    /// The constants.
     /// </summary>
-    [DataContract(Name = "Parameter", Namespace = Constants.Namespace)]
-    public class Parameter
+    public static class Constants
     {
-        
+        /// <summary>
+        /// The namespace.
+        /// </summary>
+        public const string Namespace = @"http://schemas.ffcg.se/ssis/service/1.0";
     }
 }

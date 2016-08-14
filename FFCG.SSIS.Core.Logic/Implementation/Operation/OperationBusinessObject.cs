@@ -10,6 +10,7 @@
 namespace FFCG.SSIS.Core.Logic.Implementation.Operation
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
@@ -22,6 +23,8 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Operation
     using FFCG.SSIS.Core.Logic.Implementation.Folder;
     using FFCG.SSIS.Core.Logic.Implementation.Package;
     using FFCG.SSIS.Core.Logic.Implementation.Project;
+
+    using OperationMessage = FFCG.SSIS.Core.Contract.Interface.Operation.OperationMessage;
 
     /// <summary>
     /// The operation business object.
@@ -135,5 +138,17 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Operation
                 }
             }
         }
+
+        public IEnumerable<OperationMessage> Messages
+            =>
+                this.model.OperationMessages.AsEnumerable().Select(
+                    opm =>
+                    new OperationMessage
+                        {
+                            MessageType = (MessageType)opm.MessageType,
+                            MessageSourceType = (MessageSourceType)opm.MessageSourceType,
+                            Message = opm.Message,
+                            MessageTime = opm.MessageTime
+                        });
     }
 }

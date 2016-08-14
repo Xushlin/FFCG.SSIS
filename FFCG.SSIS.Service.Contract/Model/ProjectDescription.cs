@@ -1,27 +1,28 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PackageDescription.cs" company="Erik Cedheim">
+// <copyright file="ProjectDescription.cs" company="Erik Cedheim">
 //   Copyright 2016 Erik Cedheim
 // </copyright>
 // <summary>
-//   Defines the PackageDescription type.
+//   The project description.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace FFCG.SSIS.PackageRunner.Contract.Model
+namespace FFCG.SSIS.Service.Contract.Model
 {
+    using System;
     using System.Runtime.Serialization;
 
     /// <summary>
-    /// The package start description.
+    /// The project description.
     /// </summary>
-    [DataContract(Name = "PackageDescription", Namespace = Constants.Namespace)]
-    public class PackageDescription
+    [DataContract(Name = "ProjectDescription", Namespace = Constants.Namespace)]
+    public class ProjectDescription
     {
         /// <summary>
-        /// Gets or sets the package name.
+        /// Gets or sets the name.
         /// </summary>
-        [DataMember(Name = "PackageName")]
-        public string PackageName { get; set; }
+        [DataMember(Name = "Name")]
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the folder name.
@@ -30,15 +31,15 @@ namespace FFCG.SSIS.PackageRunner.Contract.Model
         public string FolderName { get; set; }
 
         /// <summary>
-        /// Gets or sets the project name.
+        /// Gets or sets the description.
         /// </summary>
-        [DataMember(Name = "ProjectName")]
-        public string ProjectName { get; set; }
+        [DataMember(Name = "Description")]
+        public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the parameters.
+        /// Gets or sets the created time.
         /// </summary>
-        [DataMember(Name = "Parameters")]
-        public Parameters Parameters { get; set; }
+        [DataMember(Name = "CreatedTime")]
+        public DateTimeOffset CreatedTime { get; set; }
     }
 }

@@ -23,6 +23,7 @@ namespace FFCG.SSIS.Core.Data.Model
         public Operation()
         {
             this.EventMessages = new HashSet<EventMessage>();
+            this.OperationMessages = new HashSet<OperationMessage>();
         }
 
         /// <summary>

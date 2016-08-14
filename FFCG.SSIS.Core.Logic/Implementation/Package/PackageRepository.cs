@@ -14,6 +14,7 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Package
 
     using FFCG.SSIS.Core.Contract.Interface;
     using FFCG.SSIS.Core.Contract.Interface.Package;
+    using FFCG.SSIS.Core.Data.Model;
 
     /// <summary>
     /// The package repository.
@@ -73,6 +74,30 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Package
         {
             var package = this.unitOfWork.Context.Packages.First(pkg => pkg.PackageId == packageId);
 
+            return new PackageBusinessObject(package, this.unitOfWork);
+        }
+
+        /// <summary>
+        /// The get.
+        /// </summary>
+        /// <param name="packageName">
+        /// The package name.
+        /// </param>
+        /// <param name="projectName">
+        /// The project name.
+        /// </param>
+        /// <param name="folderName">
+        /// The folder name.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IPackageBusinessObject"/>.
+        /// </returns>
+        public IPackageBusinessObject Get(string packageName, string projectName, string folderName)
+        {
+            var folder = this.unitOfWork.Context.Folders.First(f => f.Name == folderName);
+            var project = folder.Projects.First(proj => proj.Name == projectName);
+            var package = project.Packages.First(pkg => pkg.Name == packageName);
+            
             return new PackageBusinessObject(package, this.unitOfWork);
         }
     }

@@ -36,6 +36,17 @@ namespace FFCG.SSIS.Core.Contract.Interface.Project
         IEnumerable<IProjectBusinessObject> List(long folderId);
 
         /// <summary>
+        /// The list.
+        /// </summary>
+        /// <param name="folderName">
+        /// The folder name.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IEnumerable"/>.
+        /// </returns>
+        IEnumerable<IProjectBusinessObject> List(string folderName);
+
+        /// <summary>
         /// The get.
         /// </summary>
         /// <param name="projectId">
@@ -45,5 +56,19 @@ namespace FFCG.SSIS.Core.Contract.Interface.Project
         /// The <see cref="IProjectBusinessObject"/>.
         /// </returns>
         IProjectBusinessObject Get(long projectId);
+
+        /// <summary>
+        /// The get.
+        /// </summary>
+        /// <param name="projectName">
+        /// The project name.
+        /// </param>
+        /// <param name="folderName">
+        /// The folder name.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IProjectBusinessObject"/>.
+        /// </returns>
+        IProjectBusinessObject Get(string projectName, string folderName);
     }
 }
