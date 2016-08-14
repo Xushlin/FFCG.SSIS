@@ -9,6 +9,7 @@
 
 namespace FFCG.SSIS.Core.Data.Interface
 {
+    using System;
     using System.Data.Entity;
 
     using FFCG.SSIS.Core.Data.Model;
@@ -16,12 +17,37 @@ namespace FFCG.SSIS.Core.Data.Interface
     /// <summary>
     /// The IntegrationServicesContext interface.
     /// </summary>
-    public interface IIntegrationServicesContext
+    public interface IIntegrationServicesContext : IDisposable
     {
         /// <summary>
         /// Gets the operations.
         /// </summary>
         IDbSet<Operation> Operations { get; }
+
+        /// <summary>
+        /// Gets the folders.
+        /// </summary>
+        IDbSet<Folder> Folders { get; }
+
+        /// <summary>
+        /// Gets the projects.
+        /// </summary>
+        IDbSet<Project> Projects { get; }
+
+        /// <summary>
+        /// Gets the packages.
+        /// </summary>
+        IDbSet<Package> Packages { get; }
+
+        /// <summary>
+        /// Gets the event messages.
+        /// </summary>
+        IDbSet<EventMessage> EventMessages { get; }
+
+        /// <summary>
+        /// Gets the operation messages.
+        /// </summary>
+        IDbSet<OperationMessage> OperationMessages { get; }
 
         /// <summary>
         /// The create execution.
@@ -44,7 +70,7 @@ namespace FFCG.SSIS.Core.Data.Interface
         /// <returns>
         /// The <see cref="int"/>.
         /// </returns>
-        int CreateExecution(string packageName, string folderName, string projectName, int? referenceId = null, bool use32BitRuntime = false);
+        long CreateExecution(string packageName, string folderName, string projectName, int? referenceId = null, bool use32BitRuntime = false);
 
         /// <summary>
         /// The set execution parameter.
@@ -61,7 +87,7 @@ namespace FFCG.SSIS.Core.Data.Interface
         /// <param name="parameterValue">
         /// The parameter value.
         /// </param>
-        void SetExecutionParameter(int executionId, short objectType, string parameterName, string parameterValue);
+        void SetExecutionParameterValue(long executionId, short objectType, string parameterName, object parameterValue);
 
         /// <summary>
         /// The start execution.
@@ -69,6 +95,14 @@ namespace FFCG.SSIS.Core.Data.Interface
         /// <param name="executionId">
         /// The execution id.
         /// </param>
-        void StartExecution(int executionId);
+        void StartExecution(long executionId);
+
+        /// <summary>
+        /// The save changes.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
+        int SaveChanges();
     }
 }

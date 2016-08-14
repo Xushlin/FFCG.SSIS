@@ -9,7 +9,10 @@
 
 namespace FFCG.SSIS.Core.Data.Implementation
 {
+    using System;
+    using System.Data;
     using System.Data.Entity;
+    using System.Data.SqlClient;
 
     using FFCG.SSIS.Core.Data.Interface;
     using FFCG.SSIS.Core.Data.Model;
@@ -24,6 +27,26 @@ namespace FFCG.SSIS.Core.Data.Implementation
         /// </summary>
         public const string ConnectionStringName = "name=IntegrationServicesContext";
 
+        #region SQL
+
+        private const string CreateExecutionSql = @"EXEC [catalog].[create_execution] 
+@package_name=@packageName, 
+@folder_name=@folderName, 
+@project_name=@projectName, 
+@use32bitruntime=@use32BitRuntime, 
+@reference_id=@referenceId, 
+@execution_id=@executionId OUTPUT";
+
+        private const string SetExecutionParameterValueSql = @"EXEC [catalog].[set_execution_parameter_value] 
+@execution_id=@executionId, 
+@object_type=@objectType, 
+@parameter_name=@parameterName, 
+@parameter_value=@parameterValue";
+
+        private const string StartExecutionSql = @"EXEC [catalog].[start_execution] @execution_id=@executionId";
+
+        #endregion // SQL
+
         public IntegrationServicesContext(
             string connectionString = ConnectionStringName,
             IDatabaseInitializer<IntegrationServicesContext> initializer = default(IDatabaseInitializer<IntegrationServicesContext>)) : base(connectionString)
@@ -32,6 +55,16 @@ namespace FFCG.SSIS.Core.Data.Implementation
         }
 
         public IDbSet<Operation> Operations => this.Set<Operation>();
+
+        public IDbSet<Folder> Folders => this.Set<Folder>();
+
+        public IDbSet<Project> Projects => this.Set<Project>();
+
+        public IDbSet<Package> Packages => this.Set<Package>();
+
+        public IDbSet<EventMessage> EventMessages => this.Set<EventMessage>();
+
+        public IDbSet<OperationMessage> OperationMessages => this.Set<OperationMessage>();
 
         /// <summary>
         /// The create execution.
@@ -54,14 +87,23 @@ namespace FFCG.SSIS.Core.Data.Implementation
         /// <returns>
         /// The <see cref="int"/>.
         /// </returns>
-        public int CreateExecution(
+        public long CreateExecution(
             string packageName,
             string folderName,
             string projectName,
             int? referenceId = null,
             bool use32BitRuntime = false)
         {
-            throw new System.NotImplementedException();
+            var packageNameParam = new SqlParameter("packageName", SqlDbType.NVarChar, 260) { Value = (object)packageName ?? DBNull.Value };
+            var folderNameParam = new SqlParameter("folderName", SqlDbType.NVarChar, 128) { Value = (object)folderName ?? DBNull.Value };
+            var projectNameParam = new SqlParameter("projectName", SqlDbType.NVarChar, 128) { Value = (object)projectName ?? DBNull.Value };
+            var use32BitRuntimeParam = new SqlParameter("use32BitRuntime", SqlDbType.Bit) { Value = use32BitRuntime };
+            var referenceIdParam = new SqlParameter("referenceId", SqlDbType.Int) { Value = (object)referenceId ?? DBNull.Value };
+            var executionIdParam = new SqlParameter("executionId", SqlDbType.BigInt) { Direction = ParameterDirection.Output };
+            
+            this.Database.ExecuteSqlCommand(CreateExecutionSql, packageNameParam, folderNameParam, projectNameParam, use32BitRuntimeParam, referenceIdParam, executionIdParam);
+
+            return (long)executionIdParam.Value;
         }
 
         /// <summary>
@@ -79,20 +121,21 @@ namespace FFCG.SSIS.Core.Data.Implementation
         /// <param name="parameterValue">
         /// The parameter value.
         /// </param>
-        public void SetExecutionParameter(int executionId, short objectType, string parameterName, string parameterValue)
+        public void SetExecutionParameterValue(long executionId, short objectType, string parameterName, object parameterValue)
         {
-            throw new System.NotImplementedException();
+            var executionIdParam = new SqlParameter("executionId", SqlDbType.BigInt) { Value = executionId };
+            var objectTypeParam = new SqlParameter("objectType", SqlDbType.SmallInt) { Value = objectType };
+            var parameterNameParam = new SqlParameter("parameterName", SqlDbType.NVarChar, 128) { Value = parameterName };
+            var parameterValueParam = new SqlParameter("parameterValue", SqlDbType.Variant) { Value = parameterValue };
+
+            this.Database.ExecuteSqlCommand(SetExecutionParameterValueSql, executionIdParam, objectTypeParam, parameterNameParam, parameterValueParam);
         }
 
-        /// <summary>
-        /// The start execution.
-        /// </summary>
-        /// <param name="executionId">
-        /// The execution id.
-        /// </param>
-        public void StartExecution(int executionId)
+        public void StartExecution(long executionId)
         {
-            throw new System.NotImplementedException();
+            var executionIdParam = new SqlParameter("executionId", SqlDbType.BigInt) { Value = executionId };
+
+            this.Database.ExecuteSqlCommand(StartExecutionSql, executionIdParam);
         }
 
         /// <summary>
@@ -106,6 +149,25 @@ namespace FFCG.SSIS.Core.Data.Implementation
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Operation>().HasKey(e => e.OperationId);
+            modelBuilder.Entity<Folder>().HasKey(f => f.FolderId);
+            modelBuilder.Entity<Project>().HasKey(p => p.ProjectId)
+                .HasRequired(p => p.Folder)
+                .WithMany(f => f.Projects)
+                .HasForeignKey(p => p.FolderId);
+            modelBuilder.Entity<Package>()
+                .HasKey(pkg => pkg.PackageId)
+                .HasRequired(pkg => pkg.Project)
+                .WithMany(p => p.Packages)
+                .HasForeignKey(pkg => pkg.ProjectId);
+            modelBuilder.Entity<EventMessage>()
+                .HasKey(em => em.EventMessageId)
+                .HasRequired(em => em.Operation)
+                .WithMany(op => op.EventMessages)
+                .HasForeignKey(em => em.OperationId);
+            modelBuilder.Entity<OperationMessage>().HasKey(opm => opm.OperationMessageId)
+                .HasRequired(opm => opm.Operation)
+                .WithMany(op => op.OperationMessages)
+                .HasForeignKey(opm => opm.OperationId); ;
         }
     }
 }

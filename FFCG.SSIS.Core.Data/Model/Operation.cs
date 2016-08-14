@@ -10,6 +10,7 @@
 namespace FFCG.SSIS.Core.Data.Model
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,6 +20,11 @@ namespace FFCG.SSIS.Core.Data.Model
     [Table("operations", Schema = "catalog")]
     public class Operation
     {
+        public Operation()
+        {
+            this.EventMessages = new HashSet<EventMessage>();
+        }
+
         /// <summary>
         /// Gets or sets the operation id.
         /// </summary>
@@ -123,5 +129,15 @@ namespace FFCG.SSIS.Core.Data.Model
         [Column("machine_name")]
         [StringLength(128)]
         public string MachineName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the event messages.
+        /// </summary>
+        public virtual ICollection<EventMessage> EventMessages { get; set; }
+
+        /// <summary>
+        /// Gets or sets the operation messages.
+        /// </summary>
+        public virtual ICollection<OperationMessage> OperationMessages { get; set; }
     }
 }
