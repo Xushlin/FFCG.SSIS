@@ -36,5 +36,16 @@ namespace FFCG.SSIS.Core.Contract.Interface.Folder
         /// The <see cref="IFolderBusinessObject"/>.
         /// </returns>
         IFolderBusinessObject Get(long folderId);
+
+        /// <summary>
+        /// The get.
+        /// </summary>
+        /// <param name="folderName">
+        /// The folder name.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IFolderBusinessObject"/>.
+        /// </returns>
+        IFolderBusinessObject Get(string folderName);
     }
 }

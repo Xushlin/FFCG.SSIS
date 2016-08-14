@@ -140,6 +140,18 @@ namespace FFCG.SSIS.Core.Tests.Unit
         }
 
         /// <summary>
+        /// The should be able to fetch a package through name.
+        /// </summary>
+        [Test]
+        public void ShouldBeAbleToFetchAPackageThroughName()
+        {
+            var package = this.repository.Get(IntegrationServicesContextData.PackageName1, IntegrationServicesContextData.ProjectName1, IntegrationServicesContextData.FolderName1);
+
+            Assert.IsNotNull(package, "package != null");
+            Assert.AreEqual(IntegrationServicesContextData.PackageId1, package.PackageId, "PackageId");
+        }
+
+        /// <summary>
         /// The data.
         /// </summary>
         private static class Data

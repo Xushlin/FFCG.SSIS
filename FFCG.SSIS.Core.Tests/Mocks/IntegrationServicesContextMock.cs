@@ -95,6 +95,26 @@ namespace FFCG.SSIS.Core.Tests.Mocks
         public Operation Operation1 { get; set; }
 
         /// <summary>
+        /// Gets or sets the operation message 3.
+        /// </summary>
+        public OperationMessage OperationMessage3 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the operation message 2.
+        /// </summary>
+        public OperationMessage OperationMessage2 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the operation message 1.
+        /// </summary>
+        public OperationMessage OperationMessage1 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the operation message set.
+        /// </summary>
+        public InMemoryDbSet<OperationMessage> OperationMessageSet { get; set; }
+
+        /// <summary>
         /// The initialize.
         /// </summary>
         private void Initialize()
@@ -104,12 +124,14 @@ namespace FFCG.SSIS.Core.Tests.Mocks
             this.PackageSet = new InMemoryDbSet<Package>(true);
             this.FolderSet = new InMemoryDbSet<Folder>(true);
             this.ProjectSet = new InMemoryDbSet<Project>(true);
+            this.OperationMessageSet = new InMemoryDbSet<OperationMessage>(true);
 
             // SETUP //////////////////////////////////////////////////////////
             this.SetupGet(ctx => ctx.Operations).Returns(this.OperationSet);
             this.SetupGet(ctx => ctx.Packages).Returns(this.PackageSet);
             this.SetupGet(ctx => ctx.Folders).Returns(this.FolderSet);
             this.SetupGet(ctx => ctx.Projects).Returns(this.ProjectSet);
+            this.SetupGet(ctx => ctx.OperationMessages).Returns(this.OperationMessageSet);
 
             // SEED ///////////////////////////////////////////////////////////
             IntegrationServicesContextData.DefaultSeed(this.Object);
@@ -124,6 +146,9 @@ namespace FFCG.SSIS.Core.Tests.Mocks
             this.Operation1 = this.OperationSet.First(o => o.OperationId == IntegrationServicesContextData.OperationId1);
             this.Operation2 = this.OperationSet.First(o => o.OperationId == IntegrationServicesContextData.OperationId2);
             this.Operation3 = this.OperationSet.First(o => o.OperationId == IntegrationServicesContextData.OperationId3);
+            this.OperationMessage1 = this.OperationMessageSet.First(o => o.OperationMessageId == IntegrationServicesContextData.OperationMessageId1);
+            this.OperationMessage2 = this.OperationMessageSet.First(o => o.OperationMessageId == IntegrationServicesContextData.OperationMessageId2);
+            this.OperationMessage3 = this.OperationMessageSet.First(o => o.OperationMessageId == IntegrationServicesContextData.OperationMessageId3);
         }
     }
 }

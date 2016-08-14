@@ -96,5 +96,27 @@ namespace FFCG.SSIS.Core.Tests.Unit
             Assert.AreEqual(1, operations.Length, "number of operations");
             Assert.IsTrue(operations.Any(op => op.OperationId == IntegrationServicesContextData.OperationId3), "operations.Any(op => op.OperationId == IntegrationServicesContextData.OperationId3)");
         }
+
+        /// <summary>
+        /// The should be able to get project.
+        /// </summary>
+        [Test]
+        public void ShouldBeAbleToGetProject()
+        {
+            var project = this.repository.Get(IntegrationServicesContextData.ProjectName1, IntegrationServicesContextData.FolderName1);
+
+            Assert.IsNotNull(project);
+        }
+
+        /// <summary>
+        /// The should be able to list projects by folder.
+        /// </summary>
+        [Test]
+        public void ShouldBeAbleToListProjectsByFolderName()
+        {
+            var projects = this.repository.List(IntegrationServicesContextData.FolderName1);
+
+            Assert.AreEqual(this.mockContext.Folder1.Projects.Count, projects.Count(), "Number of projects");
+        }
     }
 }

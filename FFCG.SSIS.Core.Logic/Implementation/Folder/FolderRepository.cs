@@ -56,5 +56,21 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Folder
 
             return new FolderBusinessObject(model, this.unitOfWork);
         }
+
+        /// <summary>
+        /// The get.
+        /// </summary>
+        /// <param name="folderName">
+        /// The folder name.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IFolderBusinessObject"/>.
+        /// </returns>
+        public IFolderBusinessObject Get(string folderName)
+        {
+            var model = this.unitOfWork.Context.Folders.First(folder => folder.Name == folderName);
+
+            return new FolderBusinessObject(model, this.unitOfWork);
+        }
     }
 }

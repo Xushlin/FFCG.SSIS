@@ -15,6 +15,8 @@ namespace FFCG.SSIS.Core.Tests.Mocks
     using FFCG.SSIS.Core.Data.Interface;
     using FFCG.SSIS.Core.Data.Model;
 
+    using OperationMessage = FFCG.SSIS.Core.Data.Model.OperationMessage;
+
     /// <summary>
     /// The integration services context data.
     /// </summary>
@@ -96,6 +98,36 @@ namespace FFCG.SSIS.Core.Tests.Mocks
         public const long OperationId3 = 9;
 
         /// <summary>
+        /// The operation message 1.
+        /// </summary>
+        public const string OperationMessage1 = "MSG1";
+
+        /// <summary>
+        /// The operation message id 1.
+        /// </summary>
+        public const long OperationMessageId1 = 10;
+
+        /// <summary>
+        /// The operation message 1.
+        /// </summary>
+        public const string OperationMessage2 = "MSG2";
+
+        /// <summary>
+        /// The operation message id 1.
+        /// </summary>
+        public const long OperationMessageId2 = 11;
+
+        /// <summary>
+        /// The operation message 1.
+        /// </summary>
+        public const string OperationMessage3 = "MSG3";
+
+        /// <summary>
+        /// The operation message id 1.
+        /// </summary>
+        public const long OperationMessageId3 = 12;
+
+        /// <summary>
         /// The default seed.
         /// </summary>
         /// <param name="context">
@@ -133,6 +165,18 @@ namespace FFCG.SSIS.Core.Tests.Mocks
             context.Operations.Add(operation1);
             context.Operations.Add(operation2);
             context.Operations.Add(operation3);
+
+            var operationMessage1 = new OperationMessage { Operation = operation1, OperationId = OperationId1, MessageType = (short)MessageType.Information, MessageSourceType = (short)MessageSourceType.PackageLevel, Message = OperationMessage1, OperationMessageId = OperationMessageId1 };
+            var operationMessage2 = new OperationMessage { Operation = operation2, OperationId = OperationId2, MessageType = (short)MessageType.Information, MessageSourceType = (short)MessageSourceType.PackageLevel, Message = OperationMessage2, OperationMessageId = OperationMessageId2 };
+            var operationMessage3 = new OperationMessage { Operation = operation3, OperationId = OperationId3, MessageType = (short)MessageType.Information, MessageSourceType = (short)MessageSourceType.PackageLevel, Message = OperationMessage3, OperationMessageId = OperationMessageId3 };
+
+            context.OperationMessages.Add(operationMessage1);
+            context.OperationMessages.Add(operationMessage2);
+            context.OperationMessages.Add(operationMessage3);
+
+            operation1.OperationMessages.Add(operationMessage1);
+            operation2.OperationMessages.Add(operationMessage2);
+            operation3.OperationMessages.Add(operationMessage3);
 
             context.SaveChanges();
         }

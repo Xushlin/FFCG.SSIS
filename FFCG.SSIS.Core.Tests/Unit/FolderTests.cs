@@ -96,7 +96,17 @@ namespace FFCG.SSIS.Core.Tests.Unit
 
             Assert.AreEqual(1, operations.Length, "number of operations");
             Assert.IsTrue(operations.Any(op => op.OperationId == IntegrationServicesContextData.OperationId2), "operations.Any(op => op.OperationId == IntegrationServicesContextData.OperationId2)");
+        }
 
+        /// <summary>
+        /// The should be able to get folder by name.
+        /// </summary>
+        [Test]
+        public void ShouldBeAbleToGetFolderByName()
+        {
+            var folder = this.repository.Get(IntegrationServicesContextData.FolderName1);
+
+            Assert.IsNotNull(folder, "folder != null");
         }
     }
 }

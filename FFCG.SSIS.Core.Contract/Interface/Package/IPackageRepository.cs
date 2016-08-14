@@ -45,5 +45,22 @@ namespace FFCG.SSIS.Core.Contract.Interface.Package
         /// The <see cref="IPackageBusinessObject"/>.
         /// </returns>
         IPackageBusinessObject Get(long packageId);
+
+        /// <summary>
+        /// The get.
+        /// </summary>
+        /// <param name="packageName">
+        /// The package name.
+        /// </param>
+        /// <param name="projectName">
+        /// The project name.
+        /// </param>
+        /// <param name="folderName">
+        /// The folder name.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IPackageBusinessObject"/>.
+        /// </returns>
+        IPackageBusinessObject Get(string packageName, string projectName, string folderName);
     }
 }

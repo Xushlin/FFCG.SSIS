@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FFCG.SSIS.PackageRunner.Data")]
+[assembly: AssemblyTitle("FFCG.SSIS.Service.Contract")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("FFCG.SSIS.PackageRunner.Data")]
+[assembly: AssemblyProduct("FFCG.SSIS.Service.Contract")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2a2359a1-8379-4d29-8355-a9b9c1a5999e")]
+[assembly: Guid("23e532ba-acda-49e4-a414-7d6f94c78403")]
 
 // Version information for an assembly consists of the following four values:
 //
