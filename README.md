@@ -42,3 +42,13 @@ Lists projects in a folder.
 
 ### GetProject
 Gets project details.
+
+# License
+You are free to use this change/update this application for whatever purpose you need. The application is provided as is with all source code. 
+The developer of this project is not resposible for the stability of the code. 
+Feel free to contact the author if you make any extensions / additions you feel should be in the solution.
+This application uses the following libraries, besides standard microsoft libraries.
+[NUnit](http://www.nunit.org/)
+[Moq](https://github.com/moq/moq))
+[FakeDbSet](https://github.com/a-h/FakeDbSet)
+[TinyIoC](https://github.com/grumpydev/TinyIoC)
