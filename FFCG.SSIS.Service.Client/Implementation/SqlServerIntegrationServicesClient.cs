@@ -68,7 +68,7 @@ namespace FFCG.SSIS.Service.Client.Implementation
             string folderName,
             PackageParameters packageParameters)
         {
-            throw new System.NotImplementedException();
+            return this.Channel.ExecutePackage(packageName, projectName, folderName, packageParameters);
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace FFCG.SSIS.Service.Client.Implementation
         /// </returns>
         public PackageDescription GetPackage(string packageName, string projectName, string folderName)
         {
-            throw new System.NotImplementedException();
+            return this.Channel.GetPackage(packageName, projectName, folderName);
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace FFCG.SSIS.Service.Client.Implementation
         /// </returns>
         public PackageDescriptions ListPackages(string projectName, string folderName)
         {
-            throw new System.NotImplementedException();
+            return this.Channel.ListPackages(projectName, folderName);
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace FFCG.SSIS.Service.Client.Implementation
         /// </returns>
         public OperationDescriptions ListOperations(string packageName, string projectName, string folderName)
         {
-            throw new System.NotImplementedException();
+            return this.Channel.ListOperations(packageName, projectName, folderName);
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace FFCG.SSIS.Service.Client.Implementation
         /// </returns>
         public OperationDescription GetOperation(long operationId)
         {
-            throw new System.NotImplementedException();
+            return this.Channel.GetOperation(operationId);
         }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace FFCG.SSIS.Service.Client.Implementation
         /// </returns>
         public OperationMessages ListOperationMessages(long operationId)
         {
-            throw new System.NotImplementedException();
+            return this.Channel.ListOperationMessages(operationId);
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace FFCG.SSIS.Service.Client.Implementation
         /// </returns>
         public FolderDescriptions ListFolders()
         {
-            throw new System.NotImplementedException();
+            return this.Channel.ListFolders();
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace FFCG.SSIS.Service.Client.Implementation
         /// </returns>
         public FolderDescription GetFolder(string folder)
         {
-            throw new System.NotImplementedException();
+            return this.Channel.GetFolder(folder);
         }
 
         /// <summary>
@@ -192,7 +192,7 @@ namespace FFCG.SSIS.Service.Client.Implementation
         /// </returns>
         public ProjectDescriptions ListProjects(string folder)
         {
-            throw new System.NotImplementedException();
+            return this.Channel.ListProjects(folder);
         }
 
         /// <summary>
@@ -209,7 +209,7 @@ namespace FFCG.SSIS.Service.Client.Implementation
         /// </returns>
         public ProjectDescription GetProject(string project, string folder)
         {
-            throw new System.NotImplementedException();
+            return this.Channel.GetProject(project, folder);
         }
     }
 }
