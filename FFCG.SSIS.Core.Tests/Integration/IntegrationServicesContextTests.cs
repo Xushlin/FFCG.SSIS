@@ -7,6 +7,9 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
 namespace FFCG.SSIS.Core.Tests.Integration
 {
     using System;
@@ -222,6 +225,60 @@ namespace FFCG.SSIS.Core.Tests.Integration
             Assert.IsTrue(operationMessages.Any(), "eventMessages.Any()");
         }
 
+        [Test]
+        public async Task ShouldBeAbleToDoThreadedCalls()
+        {
+            var tasks = new List<Task>();
+            for (var i = 0; i < 10; ++i)
+            {
+                tasks.Add(Task.Run(() => this.StartAndRunAPackage()));
+            }
+
+            await Task.WhenAll(tasks);
+
+            Assert.IsTrue(tasks.All(t => t.IsCompleted), "tasks.All(t => t.IsCompleted)");
+            Assert.IsFalse(tasks.Any(t => t.IsFaulted), "tasks.Any(t => t.IsFaulted)");
+        }
+
+        private void StartAndRunAPackage()
+        {
+            var integrationServicesContext =new IntegrationServicesContext();
+            var executionid = integrationServicesContext.CreateExecution(Data.PackageName, Data.FolderName, Data.ProjectName);
+
+            Assert.IsTrue(executionid > 0, "executionid > 0");
+
+            integrationServicesContext.SetExecutionParameterValue(executionid, Data.ObjectType, Data.ParameterName, Data.ParameterValue);
+            integrationServicesContext.StartExecution(executionid);
+
+            // created(1), running(2), canceled(3), failed(4), pending(5), ended unexpectedly (6), succeeded(7), stopping(8), and completed(9).
+            int status;
+            do
+            {
+                integrationServicesContext.Dispose();
+                integrationServicesContext = new IntegrationServicesContext();
+
+                var operation = integrationServicesContext.Operations.First(o => o.OperationId == executionid);
+                status = operation.Status;
+                
+                System.Threading.Thread.Sleep(100);
+            }
+            while (Data.OperationRunningStatuses.Contains(status));
+
+            integrationServicesContext.Dispose();
+        }
+
+        [Test]
+        public void ShouldBeAbleToListExecutions()
+        {
+            Assert.IsTrue(this.context.Executions.Any(), "this.context.Executions.Any()");
+        }
+
+        [Test]
+        public void ShouldBeAbleToFetchAnExecution()
+        {
+            var execution = this.context.Executions.First();
+
+        }
 
         /// <summary>
         /// The data.
@@ -256,9 +313,9 @@ namespace FFCG.SSIS.Core.Tests.Integration
             /// <summary>
             /// The parameter value.
             /// </summary>
-            public const string ParameterValue = @"C:\temp\SSIS Tutorial Sample Data\Currencies";
+            public const string ParameterValue = @"C:\code\SSIS Tutorial\data";
 
-            public const long OperationId1 = 2;
+            public const long OperationId1 = 3;
 
             /// <summary>
             /// The operation stopped statuses.

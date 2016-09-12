@@ -7,6 +7,9 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections;
+using System.Collections.Generic;
+
 namespace FFCG.SSIS.Core.Data.Model
 {
     using System;
@@ -19,6 +22,7 @@ namespace FFCG.SSIS.Core.Data.Model
     [Table("packages", Schema = "catalog")]
     public class Package
     {
+
         /// <summary>
         /// Gets or sets the package id.
         /// </summary>

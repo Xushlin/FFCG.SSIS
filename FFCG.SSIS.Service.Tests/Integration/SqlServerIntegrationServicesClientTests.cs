@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using FFCG.SSIS.Service.Contract.Model;
+
 namespace FFCG.SSIS.Service.Tests.Integration
 {
     using System.Linq;

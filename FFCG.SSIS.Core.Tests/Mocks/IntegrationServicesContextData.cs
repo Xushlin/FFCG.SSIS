@@ -158,8 +158,8 @@ namespace FFCG.SSIS.Core.Tests.Mocks
             context.Folders.Add(folder1);
             context.Folders.Add(folder2);
 
-            var operation1 = new Operation { OperationId = OperationId1, Status = (int)OperationStatus.Completed, ObjectType = (int)ObjectType.Package, ObjectId = PackageId1 };
-            var operation2 = new Operation { OperationId = OperationId2, Status = (int)OperationStatus.Completed, ObjectType = (int)ObjectType.Folder, ObjectId = FolderId1 };
+            var operation1 = new Operation { OperationId = OperationId1, Status = (int)OperationStatus.Completed, ObjectType = (int)ObjectType.Project, ObjectId = ProjectId1 };
+            var operation2 = new Operation { OperationId = OperationId2, Status = (int)OperationStatus.Completed, ObjectType = (int)ObjectType.Project, ObjectId = ProjectId2 };
             var operation3 = new Operation { OperationId = OperationId3, Status = (int)OperationStatus.Completed, ObjectType = (int)ObjectType.Project, ObjectId = ProjectId1 };
 
             context.Operations.Add(operation1);
@@ -177,6 +177,15 @@ namespace FFCG.SSIS.Core.Tests.Mocks
             operation1.OperationMessages.Add(operationMessage1);
             operation2.OperationMessages.Add(operationMessage2);
             operation3.OperationMessages.Add(operationMessage3);
+
+            var execution1 = new Execution { ExecutionId  = OperationId1, Status = (int)OperationStatus.Completed, ObjectType = (int)ObjectType.Project, ObjectId = ProjectId1, PackageName = PackageName1, ProjectName = ProjectName1, FolderName = FolderName1, Operation = operation1 };
+            var execution2 = new Execution { ExecutionId = OperationId2, Status = (int)OperationStatus.Completed, ObjectType = (int)ObjectType.Project, ObjectId = ProjectId2, PackageName = PackageName2, ProjectName = ProjectName2, FolderName = FolderName2, Operation = operation2 };
+            
+            context.Executions.Add(execution1);
+            context.Executions.Add(execution2);
+
+            operation1.Execution = execution1;
+            operation2.Execution = execution2;
 
             context.SaveChanges();
         }
