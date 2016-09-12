@@ -49,6 +49,8 @@ namespace FFCG.SSIS.Core.Data.Interface
         /// </summary>
         IDbSet<OperationMessage> OperationMessages { get; }
 
+        IDbSet<Execution> Executions { get; }
+
         /// <summary>
         /// The create execution.
         /// </summary>

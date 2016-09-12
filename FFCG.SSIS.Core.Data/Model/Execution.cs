@@ -1,43 +1,76 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Operation.cs" company="Erik Cedheim">
-//   Copyright 2016 Erik Cedheim
-// </copyright>
-// <summary>
-//   Defines the Operation type.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FFCG.SSIS.Core.Data.Model
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
-    /// <summary>
-    /// The operation.
-    /// </summary>
-    [Table("operations", Schema = "catalog")]
-    public class Operation
+    [Table("executions", Schema = "catalog" )]
+    public class Execution
     {
-        public Operation()
-        {
-            this.EventMessages = new HashSet<EventMessage>();
-            this.OperationMessages = new HashSet<OperationMessage>();
-        }
-
-        /// <summary>
-        /// Gets or sets the operation id.
-        /// </summary>
-        [Column("operation_id")]
+        //[execution_id]
+        [Column("execution_id")]
         [Key]
-        public long OperationId { get; set; }
+        public long ExecutionId { get; set; }
+
+        //,[folder_name]
+        [Column("folder_name")]
+        [StringLength(128)]
+        [Required]
+        public string FolderName { get; set; }
+
+        //,[project_name]
+        [Column("project_name")]
+        [StringLength(128)]
+        [Required]
+        public string ProjectName { get; set; }
+
+        //,[package_name]
+        [Column("package_name")]
+        [StringLength(260)]
+        [Required]
+        public string PackageName { get; set; }
+
+        //,[reference_id]
+        [Column("reference_id")]
+        public long? ReferenceId { get; set; }
+
+        //,[reference_type]
+        [Column("reference_type")]
+        public char? ReferenceType { get; set; }
+
+        //,[environment_folder_name]
+        [Column("environment_folder_name")]
+        [StringLength(128)]
+        public string EnvironmentFolderName { get; set; }
+
+        //,[environment_name]
+        [Column("environment_name")]
+        [StringLength(128)]
+        public string EnvironmentName { get; set; }
+
+        //,[project_lsn]
+        [Column("project_lsn")]
+        public long? ProjectLsn { get; set; }
+
+        //,[executed_as_sid]
+        [Column("executed_as_sid")]
+        public byte[] ExecutedAsSid { get; set; }
+
+        //,[executed_as_name]
+        [Column("executed_as_name")]
+        [StringLength(128)]
+        public string ExecutedAsName { get; set; }
+
+        [Column("use32bitruntime")]
+        public bool Use32BitRuntime { get; set; }
+
 
         /// <summary>
         /// Gets or sets the operation type.
         /// </summary>
         [Column("operation_type")]
         public short OperationType { get; set; }
+
 
         /// <summary>
         /// Gets or sets the created time.
@@ -58,13 +91,6 @@ namespace FFCG.SSIS.Core.Data.Model
         public long? ObjectId { get; set; }
 
         /// <summary>
-        /// Gets or sets the object name.
-        /// </summary>
-        [Column("object_name")]
-        [StringLength(260)]
-        public string ObjectName { get; set; }
-
-        /// <summary>
         /// Gets or sets the status.
         /// </summary>
         [Column("status")]
@@ -81,6 +107,7 @@ namespace FFCG.SSIS.Core.Data.Model
         /// </summary>
         [Column("end_time")]
         public DateTimeOffset? EndTime { get; set; }
+
 
         /// <summary>
         /// Gets or sets the caller sid.
@@ -117,6 +144,7 @@ namespace FFCG.SSIS.Core.Data.Model
         [StringLength(128)]
         public string StoppedByName { get; set; }
 
+
         /// <summary>
         /// Gets or sets the server name.
         /// </summary>
@@ -131,16 +159,12 @@ namespace FFCG.SSIS.Core.Data.Model
         [StringLength(128)]
         public string MachineName { get; set; }
 
-        public virtual Execution Execution { get; set; }
+        public virtual Operation Operation { get; set; }
 
-        /// <summary>
-        /// Gets or sets the event messages.
-        /// </summary>
-        public virtual ICollection<EventMessage> EventMessages { get; set; }
-
-        /// <summary>
-        /// Gets or sets the operation messages.
-        /// </summary>
-        public virtual ICollection<OperationMessage> OperationMessages { get; set; }
+        //,[total_physical_memory_kb]
+        //,[available_physical_memory_kb]
+        //,[total_page_file_kb]
+        //,[available_page_file_kb]
+        //,[cpu_count]
     }
 }

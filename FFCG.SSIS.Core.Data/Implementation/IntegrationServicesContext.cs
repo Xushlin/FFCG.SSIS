@@ -76,6 +76,8 @@ namespace FFCG.SSIS.Core.Data.Implementation
 
         public IDbSet<OperationMessage> OperationMessages => this.Set<OperationMessage>();
 
+        public IDbSet<Execution> Executions => this.Set<Execution>();
+
         /// <summary>
         /// The create execution.
         /// </summary>
@@ -178,6 +180,9 @@ namespace FFCG.SSIS.Core.Data.Implementation
                 .HasRequired(opm => opm.Operation)
                 .WithMany(op => op.OperationMessages)
                 .HasForeignKey(opm => opm.OperationId); ;
+            modelBuilder.Entity<Execution>().HasKey(exe => exe.ExecutionId)
+                .HasRequired(exe => exe.Operation)
+                .WithOptional(op => op.Execution);
         }
     }
 }

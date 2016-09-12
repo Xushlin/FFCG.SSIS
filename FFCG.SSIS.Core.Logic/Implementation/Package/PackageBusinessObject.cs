@@ -73,8 +73,9 @@ namespace FFCG.SSIS.Core.Logic.Implementation.Package
         {
             get
             {
-                return this.unitOfWork.Context.Operations
-                    .Where(op => op.ObjectType == (short)ObjectType.Package && op.ObjectId == this.model.PackageId)
+                return this.unitOfWork.Context.Executions
+                    .Where(exe => exe.PackageName == this.model.Name && exe.ProjectName == this.model.Project.Name && exe.FolderName == this.model.Project.Folder.Name)
+                    .Select(exe => exe.Operation)
                     .AsEnumerable()
                     .Select(op => new OperationBusinessObject(op, this.unitOfWork));
             }

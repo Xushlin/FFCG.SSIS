@@ -114,6 +114,12 @@ namespace FFCG.SSIS.Core.Tests.Mocks
         /// </summary>
         public InMemoryDbSet<OperationMessage> OperationMessageSet { get; set; }
 
+        public Execution Execution2 { get; set; }
+
+        public Execution Execution1 { get; set; }
+
+        public InMemoryDbSet<Execution> ExecutionSet { get; set; }
+
         /// <summary>
         /// The initialize.
         /// </summary>
@@ -125,6 +131,7 @@ namespace FFCG.SSIS.Core.Tests.Mocks
             this.FolderSet = new InMemoryDbSet<Folder>(true);
             this.ProjectSet = new InMemoryDbSet<Project>(true);
             this.OperationMessageSet = new InMemoryDbSet<OperationMessage>(true);
+            this.ExecutionSet = new InMemoryDbSet<Execution>(true);
 
             // SETUP //////////////////////////////////////////////////////////
             this.SetupGet(ctx => ctx.Operations).Returns(this.OperationSet);
@@ -132,6 +139,7 @@ namespace FFCG.SSIS.Core.Tests.Mocks
             this.SetupGet(ctx => ctx.Folders).Returns(this.FolderSet);
             this.SetupGet(ctx => ctx.Projects).Returns(this.ProjectSet);
             this.SetupGet(ctx => ctx.OperationMessages).Returns(this.OperationMessageSet);
+            this.SetupGet(ctx => ctx.Executions).Returns(this.ExecutionSet);
 
             // SEED ///////////////////////////////////////////////////////////
             IntegrationServicesContextData.DefaultSeed(this.Object);
@@ -149,6 +157,8 @@ namespace FFCG.SSIS.Core.Tests.Mocks
             this.OperationMessage1 = this.OperationMessageSet.First(o => o.OperationMessageId == IntegrationServicesContextData.OperationMessageId1);
             this.OperationMessage2 = this.OperationMessageSet.First(o => o.OperationMessageId == IntegrationServicesContextData.OperationMessageId2);
             this.OperationMessage3 = this.OperationMessageSet.First(o => o.OperationMessageId == IntegrationServicesContextData.OperationMessageId3);
+            this.Execution1 = this.ExecutionSet.First(exe => exe.ExecutionId == IntegrationServicesContextData.OperationId1);
+            this.Execution2 = this.ExecutionSet.First(exe => exe.ExecutionId == IntegrationServicesContextData.OperationId2);
         }
     }
 }

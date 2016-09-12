@@ -52,6 +52,7 @@
     <Compile Include="Implementation\IntegrationServicesContext.cs" />
     <Compile Include="Interface\IIntegrationServicesContext.cs" />
     <Compile Include="Model\EventMessage.cs" />
+    <Compile Include="Model\Execution.cs" />
     <Compile Include="Model\Folder.cs" />
     <Compile Include="Model\Operation.cs" />
     <Compile Include="Model\OperationMessage.cs" />

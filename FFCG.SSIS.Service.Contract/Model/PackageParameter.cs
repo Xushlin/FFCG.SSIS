@@ -33,6 +33,6 @@ namespace FFCG.SSIS.Service.Contract.Model
         /// Gets or sets the value.
         /// </summary>
         [DataMember(Name = "Value")]
-        public string Value { get; set; }
+        public object Value { get; set; }
     }
 }
